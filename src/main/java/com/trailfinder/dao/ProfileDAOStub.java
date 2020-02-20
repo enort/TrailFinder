@@ -18,7 +18,7 @@ public class ProfileDAOStub implements IProfileDAO {
 	}
 
 	@Override
-	public void saveProfile() {
+	public void saveProfile(ProfileDTO profile) {
 		// TODO Auto-generated method stub
 
 	}

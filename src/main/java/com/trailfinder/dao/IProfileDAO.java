@@ -15,7 +15,7 @@ public interface IProfileDAO {
 	/*
 	 * @param profile saves profile information
 	 */
-	public void saveProfile();
+	public void saveProfile(ProfileDTO profile);
 	
 	/*
 	 * @param userId ID of selected user to view profile information

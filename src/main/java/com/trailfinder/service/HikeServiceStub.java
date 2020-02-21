@@ -44,7 +44,7 @@ public class HikeServiceStub  implements IHikeService {
 			case 2: profile = profiles.get(2); break;
 			case 3: profile = profiles.get(3); break;
 			case 4: profile = profiles.get(4); break;
-		
+			default: profile = null; break;
 		}
 		
 		return profile;

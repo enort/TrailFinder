@@ -3,51 +3,81 @@
  */
 package com.trailfinder.dto;
 
+import java.util.Date;
+import java.util.List;
+
 /**
- * @author Administrator
+ * @author LookItsCashew
  * DTO for Events posted on application
  */
 public class EventDTO {
 
 	// Private fields
-	private int EventId;
-	private double Length;
+	private int eventId;
+	private double distance;
+	private Date eventStart;
+	private Date eventEnd;
 	private double Latitude;
 	private double Longitude;
+	private ProfileDTO eventCreator;
+	private List<ProfileDTO> attendees;
 	
-	// Getters and Setters
-	/*
-	 * Sets value of eventId
-	 * @param Id of event
+	/**
+	 * @return the eventId
 	 */
-	public void setId(int eventId) {
-		this.EventId = eventId;
+	public int getEventId() {
+		return eventId;
 	}
-	
-	/*
-	 * Gets value of eventId
-	 * @return EventId
+
+	/**
+	 * @param eventId the eventId to set
 	 */
-	public int getId() {
-		return EventId;
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
 	}
-	
-	/*
-	 * Sets value of Length
-	 * @param length of event
+
+	/**
+	 * @return the distance
 	 */
-	public void setLength(double length) {
-		this.Length = length;
+	public double getDistance() {
+		return distance;
 	}
-	
-	/*
-	 * Gets value of length (distance) of event
-	 * @return Length
+
+	/**
+	 * @param distance the distance to set
 	 */
-	public double getLength() {
-		return Length;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
-	
+
+	/**
+	 * @return the eventStart
+	 */
+	public Date getEventStart() {
+		return eventStart;
+	}
+
+	/**
+	 * @param eventStart the eventStart to set
+	 */
+	public void setEventStart(Date eventStart) {
+		this.eventStart = eventStart;
+	}
+
+	/**
+	 * @return the eventEnd
+	 */
+	public Date getEventEnd() {
+		return eventEnd;
+	}
+
+	/**
+	 * @param eventEnd the eventEnd to set
+	 */
+	public void setEventEnd(Date eventEnd) {
+		this.eventEnd = eventEnd;
+	}
+
 	/*
 	 * Sets value of Latitude of event start location
 	 * @param latitude of start location
@@ -78,5 +108,33 @@ public class EventDTO {
 	 */
 	public double getLongitude() {
 		return Longitude;
+	}
+
+	/**
+	 * @return the eventCreator
+	 */
+	public ProfileDTO getEventCreator() {
+		return eventCreator;
+	}
+
+	/**
+	 * @param eventCreator the eventCreator to set
+	 */
+	public void setEventCreator(ProfileDTO eventCreator) {
+		this.eventCreator = eventCreator;
+	}
+
+	/**
+	 * @return the attendees
+	 */
+	public List<ProfileDTO> getAttendees() {
+		return attendees;
+	}
+
+	/**
+	 * @param atendees the attendees to set
+	 */
+	public void setAttendees(List<ProfileDTO> attendees) {
+		this.attendees = attendees;
 	}
 }

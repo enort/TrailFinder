@@ -11,7 +11,7 @@ public interface IEventDAO {
 	/*
 	 * @return eventList a list of Events represented by EventDTOs
 	 */
-	public List<EventDTO> getEvents();
+	public EventDTO getEvent(int eventId);
 	
 	/*
 	 * @param event creates an event visible to other users

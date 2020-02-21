@@ -1,5 +1,6 @@
 package com.trailfinder.dto;
 
+import java.util.List;
 
 /**
  * @author LookItsCashew
@@ -11,8 +12,8 @@ public class ProfileDTO {
 	private int profileId;
 	private String firstName;
 	private String bio;
+	private List<EventDTO> events;
 	
-	// Getters and setters
 	/**
 	 * @return the profileId
 	 */
@@ -48,6 +49,18 @@ public class ProfileDTO {
 	 */
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+	/**
+	 * @return the events
+	 */
+	public List<EventDTO> getEvents() {
+		return events;
+	}
+	/**
+	 * @param events the events to set
+	 */
+	public void setEvents(List<EventDTO> events) {
+		this.events = events;
 	}
 	
 	

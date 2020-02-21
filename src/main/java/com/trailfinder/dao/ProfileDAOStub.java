@@ -12,21 +12,16 @@ import com.trailfinder.dto.ProfileDTO;
 public class ProfileDAOStub implements IProfileDAO {
 
 	@Override
-	public ProfileDTO getProfile() {
+	public ProfileDTO getProfile(int profileId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void saveProfile() {
+	public void saveProfile(ProfileDTO profile) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public ProfileDTO viewProfile(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

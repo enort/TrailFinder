@@ -14,7 +14,7 @@ import com.trailfinder.dto.EventDTO;
 public class EventDAOStub implements IEventDAO {
 
 	@Override
-	public List<EventDTO> getEvents() {
+	public EventDTO getEvent(int eventId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -22,7 +22,9 @@ public class EventDAOStub implements IEventDAO {
 	@Override
 	public void createEvent(EventDTO event) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+	
 
 }

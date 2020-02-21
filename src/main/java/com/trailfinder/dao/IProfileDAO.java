@@ -10,15 +10,12 @@ public interface IProfileDAO {
 	/*
 	 * @return userProfile the user's profile represented by ProfileDTO
 	 */
-	public ProfileDTO getProfile();
+	public ProfileDTO getProfile(int profileId);
 	
 	/*
+	 * Save user profile creation
 	 * @param profile saves profile information
 	 */
 	public void saveProfile(ProfileDTO profile);
 	
-	/*
-	 * @param userId ID of selected user to view profile information
-	 */
-	public ProfileDTO viewProfile(int userId);
 }

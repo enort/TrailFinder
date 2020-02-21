@@ -1,12 +1,14 @@
 # TrailFinder
 
-TrailFinder is a Spring Boot/Maven project built using Eclipse IDE
+
+## Technology
+
+TrailFinder is a Spring Boot/Maven project built using Eclipse IDE and will be using Google APIs on the Google Maps platform.
 
 ## Description
 
 TrailFinder is an application that will allow users to view trails near them as well as custom user created hike events. These events 
-will be created with an associated user profile and contain information such as the distance the hike event will be, when it is schedul-
-ed, and where it starts geographically. 
+will be created with an associated user profile and contain information such as the distance the hike event will be, when it is scheduled, and where it starts geographically. 
 
 ## Authors
 Konrad Schaller (Backend and service layer)

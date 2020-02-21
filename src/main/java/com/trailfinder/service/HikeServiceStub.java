@@ -6,6 +6,8 @@ package com.trailfinder.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -14,6 +16,7 @@ import com.trailfinder.dto.TrailDTO;
  * @author LookItsCashew
  *
  */
+@Component
 public class HikeServiceStub  implements IHikeService {
 
 	@Override

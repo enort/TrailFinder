@@ -24,7 +24,7 @@ import com.trailfinder.service.IHikeService;
 public class HikeServiceTest {
 	
 	@Autowired
-	IHikeService hikeServiceStub;
+	IHikeService hikeService;
 	
 	ProfileDTO profile;
 	
@@ -42,7 +42,7 @@ public class HikeServiceTest {
 
 	private void whenProfileIsSelected() {
 		// TODO Auto-generated method stub
-		profile = hikeServiceStub.getProfile(2);
+		profile = hikeService.getProfile(2);
 	}
 
 	private void thenProfileReturnedIfExists() {

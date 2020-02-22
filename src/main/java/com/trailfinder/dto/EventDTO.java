@@ -3,7 +3,7 @@
  */
 package com.trailfinder.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -15,8 +15,8 @@ public class EventDTO {
 	// Private fields
 	private int eventId;
 	private double distance;
-	private Date eventStart;
-	private Date eventEnd;
+	private LocalDateTime eventStart;
+	private LocalDateTime eventEnd;
 	private double Latitude;
 	private double Longitude;
 	private ProfileDTO eventCreator;
@@ -53,28 +53,28 @@ public class EventDTO {
 	/**
 	 * @return the eventStart
 	 */
-	public Date getEventStart() {
+	public LocalDateTime getEventStart() {
 		return eventStart;
 	}
 
 	/**
 	 * @param eventStart the eventStart to set
 	 */
-	public void setEventStart(Date eventStart) {
+	public void setEventStart(LocalDateTime eventStart) {
 		this.eventStart = eventStart;
 	}
 
 	/**
 	 * @return the eventEnd
 	 */
-	public Date getEventEnd() {
+	public LocalDateTime getEventEnd() {
 		return eventEnd;
 	}
 
 	/**
 	 * @param eventEnd the eventEnd to set
 	 */
-	public void setEventEnd(Date eventEnd) {
+	public void setEventEnd(LocalDateTime eventEnd) {
 		this.eventEnd = eventEnd;
 	}
 
@@ -137,4 +137,5 @@ public class EventDTO {
 	public void setAttendees(List<ProfileDTO> attendees) {
 		this.attendees = attendees;
 	}
+
 }

@@ -64,8 +64,28 @@ public class HikeServiceStub  implements IHikeService {
 
 	@Override
 	public List<EventDTO> getEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Create list of events to be returned
+		List<EventDTO> events = new ArrayList<EventDTO>();
+		
+		// Create 5 events
+		int i;
+		for (i = 0; i < 5; i++)
+		{
+			ProfileDTO profile = new ProfileDTO();
+			profile.setProfileId(i);
+			profile.setFirstName("test " + i);
+			profile.setBio("TestBio " + i);
+			profile.setEvents(null);
+			
+			EventDTO event = new EventDTO();
+			event.setEventId(i);
+			event.setLatitude(39.1330 + i);
+			event.setLongitude(-84.4134 + i);
+			event.setDistance(i + (i/2));
+			event.setEventCreator(profile);
+			events.add(event);
+		}
+		return events;
 	}
 
 	@Override

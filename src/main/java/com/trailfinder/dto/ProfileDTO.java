@@ -8,11 +8,27 @@ import java.util.List;
  */
 public class ProfileDTO {
 
-	// Private Fields
 	private int profileId;
 	private String firstName;
 	private String bio;
 	private List<EventDTO> events;
+	
+	public ProfileDTO() {	
+	}
+	
+	/**
+	 * Create and initialize a new instance of the ProfileDTO
+	 * @param profileId
+	 * @param firstName
+	 * @param bio
+	 * @param events
+	 */
+	public ProfileDTO(int profileId, String firstName, String bio, List<EventDTO> events) {
+		this.profileId = profileId;
+		this.firstName = firstName;
+		this.bio = bio;
+		this.events = events;
+	}	
 	
 	/**
 	 * @return the profileId

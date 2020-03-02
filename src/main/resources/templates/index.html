@@ -28,6 +28,12 @@
 	<div id="main" class="container">
 		<h2>Welcome to TrailFinder</h2>
 		<br>
+		Find a trail near you:
+		<form action='#' th:action="@{/searchResults}" method="GET">
+		<input type="text" name="searchTerm" placeholder="Search Location">
+		<button name="submit" type="submit" value="0">Submit</button>
+		</form>
+		<br/>
 		<div id="content">
 			<div class="row">
 				<div class="col-lg-8">
@@ -39,7 +45,7 @@
 		</div>
 	</div>
 	<script>
-	function initMap() {
+	 function initMap() {
 		  // Map options
 		  var options = {
 				  zoom:12,
@@ -50,8 +56,8 @@
 		      document.getElementById('map'), options);
 		  // The marker, positioned at Uluru
 		  var marker = new google.maps.Marker({position: {lat:39.11589,lng:-84.52465}, map: map});
-	}
-	</script>
+	} 
+	</script> 
 	<script async="true" defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC6Uco6nl8sRYwKBa8Xnjll3olfbYGKM&callback=initMap">
     </script>

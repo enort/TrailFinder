@@ -35,7 +35,7 @@ public class TrailDTO {
 		return name;
 	}
 	/**
-	 * @param name the name to set
+	 * @param set the name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -47,7 +47,7 @@ public class TrailDTO {
 		return latitude;
 	}
 	/**
-	 * @param latitude the latitude to set
+	 * @param set the latitude
 	 */
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
@@ -59,7 +59,7 @@ public class TrailDTO {
 		return longitude;
 	}
 	/**
-	 * @param longitude the longitude to set
+	 * @param set the longitude
 	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;

@@ -23,31 +23,14 @@ public class HikeServiceStub  implements IHikeService {
 	public ProfileDTO getProfile(int profileId) {
 		// TODO create a List of profiles and check if the passed Id matches any
 		List<ProfileDTO> profiles = new ArrayList<ProfileDTO>();
+		
 		// Create 5 profiles
-		int i;
-		for (i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			ProfileDTO testProfile = new ProfileDTO();
-			testProfile.setProfileId(i);
-			testProfile.setFirstName("TestName" + i);
-			testProfile.setBio("TestBio");
-			testProfile.setEvents(null);
-			profiles.add(testProfile);
+			profiles.add(new ProfileDTO(i, "TestName" + i, "TestBio", null));
 		}
 		
-		// Check which profile was selected
-		ProfileDTO profile = new ProfileDTO();
-		switch (profileId) 
-		{
-			case 0: profile = profiles.get(0); break;
-			case 1: profile = profiles.get(1); break;
-			case 2: profile = profiles.get(2); break;
-			case 3: profile = profiles.get(3); break;
-			case 4: profile = profiles.get(4); break;
-			default: profile = null; break;
-		}
-		
-		return profile;
+		return profileId >= 0 && profileId < profiles.size() ? profiles.get(profileId) : null;
 	}
 
 	@Override
@@ -68,14 +51,9 @@ public class HikeServiceStub  implements IHikeService {
 		List<EventDTO> events = new ArrayList<EventDTO>();
 		
 		// Create 5 events
-		int i;
-		for (i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			ProfileDTO profile = new ProfileDTO();
-			profile.setProfileId(i);
-			profile.setFirstName("test " + i);
-			profile.setBio("TestBio " + i);
-			profile.setEvents(null);
+			ProfileDTO profile = new ProfileDTO(i, "test " + i, "TestBio " + i, null);
 			
 			EventDTO event = new EventDTO();
 			event.setEventId(i);
@@ -85,6 +63,7 @@ public class HikeServiceStub  implements IHikeService {
 			event.setEventCreator(profile);
 			events.add(event);
 		}
+		
 		return events;
 	}
 

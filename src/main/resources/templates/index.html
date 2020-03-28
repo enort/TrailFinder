@@ -34,6 +34,12 @@
 					<div id="map" class="container container-fluid">
 						
 					</div>
+					<!--list event attributes here -->
+					<div class="list-group list-group-action" th:each="event : ${events}">
+					<a href="#" class="list-group-item">
+					<p th:text="${event}"/>
+					</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,10 +51,10 @@
 				  zoom:12,
 				  center:{lat:39.10713, lng:-84.50413}
 		  }
-		  // The map, centered at Uluru
+		  // The map, centered at Cincinnati
 		  var map = new google.maps.Map(
 		      document.getElementById('map'), options);
-		  // The marker, positioned at Uluru
+		  // The marker, positioned at Cincinnati
 		  var marker = new google.maps.Marker({position: {lat:39.11589,lng:-84.52465}, map: map});
 	} 
 	</script> 

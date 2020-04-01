@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class EventDTO {
 
-	// Private fields
 	private int eventId;
 	private double distance;
 	private LocalDateTime eventStart;
@@ -21,6 +20,38 @@ public class EventDTO {
 	private double Longitude;
 	private ProfileDTO eventCreator;
 	private List<ProfileDTO> attendees;
+	
+	/**
+	 * Create and initialize a new instance of the EventDTO
+	 * 
+	 * @param eventId
+	 * @param distance
+	 * @param eventStart
+	 * @param eventEnd
+	 * @param latitude
+	 * @param longitude
+	 * @param eventCreator
+	 * @param attendees
+	 */
+	public EventDTO(int eventId, double distance, LocalDateTime eventStart, LocalDateTime eventEnd, double latitude, 
+			double longitude, ProfileDTO eventCreator, List<ProfileDTO> attendees) 
+	{
+		this.eventId = eventId;
+		this.distance = distance;
+		this.eventStart = eventStart;
+		this.eventEnd = eventEnd;
+		this.Latitude = latitude;
+		this.Longitude = longitude;
+		this.eventCreator = eventCreator;
+		this.attendees = attendees;
+	}
+	
+	/**
+	 * Create an instance of EventDTO
+	 */
+	public EventDTO() {
+	
+	}
 	
 	/**
 	 * @return the eventId

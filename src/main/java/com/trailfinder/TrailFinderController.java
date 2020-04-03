@@ -43,7 +43,7 @@ public class TrailFinderController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String base(Model model) {
 		List<EventDTO> events = hikeService.getEvents();
-		model.addAttribute("List<EventDTO>", events);
+		model.addAttribute("events", events);
 		return "index";
 	}
 	

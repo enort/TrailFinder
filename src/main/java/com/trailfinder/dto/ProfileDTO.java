@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class ProfileDTO {
 
+	//private fields
 	private int profileId;
 	private String firstName;
 	private String bio;

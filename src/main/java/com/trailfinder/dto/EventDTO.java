@@ -17,8 +17,8 @@ public class EventDTO {
 	private double distance;
 	private LocalDateTime eventStart;
 	private LocalDateTime eventEnd;
-	private double Latitude;
-	private double Longitude;
+	private double latitude;
+	private double longitude;
 	private ProfileDTO eventCreator;
 	private List<ProfileDTO> attendees;
 	
@@ -83,7 +83,7 @@ public class EventDTO {
 	 * @param latitude of start location
 	 */
 	public void setLatitude(double latitude) {
-		this.Latitude = latitude;
+		this.latitude = latitude;
 	}
 	
 	/*
@@ -91,7 +91,7 @@ public class EventDTO {
 	 * @return Latitude
 	 */
 	public double getLatitude() {
-		return Latitude;
+		return latitude;
 	}
 	
 	/*
@@ -99,7 +99,7 @@ public class EventDTO {
 	 * @param longitude of start location
 	 */
 	public void setLongitude(double longitude) {
-		this.Longitude = longitude;
+		this.longitude = longitude;
 	}
 	
 	/*
@@ -107,7 +107,7 @@ public class EventDTO {
 	 * @return Longitude
 	 */
 	public double getLongitude() {
-		return Longitude;
+		return longitude;
 	}
 
 	/**
@@ -136,6 +136,11 @@ public class EventDTO {
 	 */
 	public void setAttendees(List<ProfileDTO> attendees) {
 		this.attendees = attendees;
+	}
+	
+	@Override
+	public String toString() {
+		return "New event at " + this.latitude + " " + this.longitude;
 	}
 
 }

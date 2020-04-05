@@ -35,13 +35,11 @@ public class HikeServiceStub  implements IHikeService {
 
 	@Override
 	public void saveProfile(ProfileDTO profile) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<TrailDTO> getNearbyTrails() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -69,7 +67,6 @@ public class HikeServiceStub  implements IHikeService {
 
 	@Override
 	public void createEvent(EventDTO event) {
-		// TODO Auto-generated method stub
 		
 	}
 	

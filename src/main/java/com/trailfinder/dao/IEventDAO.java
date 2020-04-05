@@ -1,6 +1,4 @@
 package com.trailfinder.dao;
-import java.util.List;
-
 import com.trailfinder.dto.EventDTO;
 
 /*

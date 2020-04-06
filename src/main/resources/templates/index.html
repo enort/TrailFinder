@@ -43,6 +43,7 @@
 					<a href="#" class="list-group-item">
 					<p th:text="${event}"/>
 					</a>
+
 					</div>
 				</div>
 			</div>
@@ -60,7 +61,39 @@
 		      document.getElementById('map'), options);
 		  // The marker, positioned at Cincinnati
 		  var marker = new google.maps.Marker({position: {lat:39.11589,lng:-84.52465}, map: map});
-	} 
+		  var infoWindow = new google.maps.InfoWindow;
+
+	        //Geolocation
+	        if (navigator.geolocation) {
+	          navigator.geolocation.getCurrentPosition(function(position) {
+	            var pos = {
+	              lat: position.coords.latitude,
+	              lng: position.coords.longitude
+	            };
+
+	            infoWindow.setPosition(pos);
+	            infoWindow.setContent('You are here!');
+	            infoWindow.open(map);
+	            map.setCenter(pos); // center map to user cordinates
+	            var marker = new google.maps.Marker({position: pos, map: map}); //set marker to user current location
+	          }, function() {
+	            handleLocationError(true, infoWindow, map.getCenter());
+	          });
+	        } else {
+	          // Browser doesn't support Geolocation
+	          handleLocationError(false, infoWindow, map.getCenter());
+	        }
+	      
+
+	      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	        infoWindow.setPosition(pos);
+	        infoWindow.setContent(browserHasGeolocation ?
+	                              'Error: The Geolocation service failed.' :
+	                              'Error: Your browser doesn\'t support geolocation.');
+	        infoWindow.open(map);
+	     
+			} 
+	     }
 	</script> 
 	<script async="true" defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC6Uco6nl8sRYwKBa8Xnjll3olfbYGKM&callback=initMap">

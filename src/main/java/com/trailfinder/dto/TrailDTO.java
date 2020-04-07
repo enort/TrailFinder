@@ -15,7 +15,11 @@ public class TrailDTO {
 	private String name;
 	private double latitude;
 	private double longitude;
+	//Adds an interesting bit to the trail
+	Private String hotSpot;
 	
+
+
 	/**
 	 * @return the id
 	 */
@@ -63,6 +67,12 @@ public class TrailDTO {
 	 */
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+	public String gethotSpot(){
+		return hotSpot;
+	}
+	public void sedhotSpot(String hotSpot){
+		return hotSpot;
 	}
 
 

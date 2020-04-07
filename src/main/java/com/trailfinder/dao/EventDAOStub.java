@@ -24,7 +24,14 @@ public class EventDAOStub implements IEventDAO {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void deleteEvent(eventDTO event){
+		//TODO delete event stub
+	}
 
-	
+	@Override
+	public void updateEvent(eventDTO event){
+		//TODO update event stub
+	}x
 
 }

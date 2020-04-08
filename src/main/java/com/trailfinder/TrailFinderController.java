@@ -23,7 +23,6 @@ import com.trailfinder.service.IHikeService;
 @Controller
 public class TrailFinderController {
 	
-	// Private Fields
 	@Autowired
 	private IHikeService hikeService;
 

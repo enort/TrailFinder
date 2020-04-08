@@ -55,13 +55,7 @@ public class HikeServiceStub  implements IHikeService {
 		{
 			ProfileDTO profile = new ProfileDTO(i, "test " + i, "TestBio " + i, null);
 			
-			EventDTO event = new EventDTO();
-			event.setEventId(i);
-			event.setLatitude(39.1330 + i);
-			event.setLongitude(-84.4134 + i);
-			event.setDistance(i + (i/2));
-			event.setEventCreator(profile);
-			events.add(event);
+			events.add(new EventDTO(i, 39.1330 + i, null, null, -84.4134 + i, i + (i/2), profile, null));
 		}
 		
 		return events;

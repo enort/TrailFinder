@@ -16,7 +16,7 @@ public class TrailDTO {
 	private double latitude;
 	private double longitude;
 	//Adds an interesting bit to the trail
-	Private String hotSpot;
+	private String hotSpot;
 	
 
 
@@ -71,7 +71,7 @@ public class TrailDTO {
 	public String gethotSpot(){
 		return hotSpot;
 	}
-	public void sedhotSpot(String hotSpot){
+	public String sedhotSpot(String hotSpot){
 		return hotSpot;
 	}
 

@@ -16,10 +16,9 @@ public class EventDTO {
 	private double distance;
 	private LocalDateTime eventStart;
 	private LocalDateTime eventEnd;
-	private double Latitude;
-	private double Longitude;
+	private String Latitude;
+	private String Longitude;
 	private EventCreatorDTO eventCreator;
-	private List<EventAttendeeDTO> eventAttendees;
 	
 	/**
 	 * Create and initialize a new instance of the EventDTO
@@ -32,8 +31,8 @@ public class EventDTO {
 	 * @param longitude
 	 * @param eventCreator
 	 */
-	public EventDTO(double distance, LocalDateTime eventStart, LocalDateTime eventEnd, double latitude, 
-			double longitude, EventCreatorDTO eventCreator, List<EventAttendeeDTO> eventAttendees) 
+	public EventDTO(double distance, LocalDateTime eventStart, LocalDateTime eventEnd, String latitude, 
+			String longitude, EventCreatorDTO eventCreator) 
 	{
 		this.distance = distance;
 		this.eventStart = eventStart;
@@ -41,7 +40,6 @@ public class EventDTO {
 		this.Latitude = latitude;
 		this.Longitude = longitude;
 		this.eventCreator = eventCreator;
-		this.eventAttendees = eventAttendees;
 	}
 	
 	/**
@@ -107,36 +105,32 @@ public class EventDTO {
 		this.eventEnd = eventEnd;
 	}
 
-	/*
-	 * Sets value of Latitude of event start location
-	 * @param latitude of start location
+	/**
+	 * @return the latitude
 	 */
-	public void setLatitude(double latitude) {
-		this.Latitude = latitude;
-	}
-	
-	/*
-	 * Gets value of Latitude of start location
-	 * @return Latitude
-	 */
-	public double getLatitude() {
+	public String getLatitude() {
 		return Latitude;
 	}
-	
-	/*
-	 * Sets value of Longitude of start location
-	 * @param longitude of start location
+
+	/**
+	 * @param latitude the latitude to set
 	 */
-	public void setLongitude(double longitude) {
-		this.Longitude = longitude;
+	public void setLatitude(String latitude) {
+		Latitude = latitude;
 	}
-	
-	/*
-	 * Gets value of Longitude of start location
-	 * @return Longitude
+
+	/**
+	 * @return the longitude
 	 */
-	public double getLongitude() {
+	public String getLongitude() {
 		return Longitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(String longitude) {
+		Longitude = longitude;
 	}
 
 	/**
@@ -152,19 +146,4 @@ public class EventDTO {
 	public void setEventCreator(EventCreatorDTO eventCreator) {
 		this.eventCreator = eventCreator;
 	}
-
-	/**
-	 * @return the eventAttendees
-	 */
-	public List<EventAttendeeDTO> getEventAttendees() {
-		return eventAttendees;
-	}
-
-	/**
-	 * @param eventAttendees the eventAttendees to set
-	 */
-	public void setEventAttendees(List<EventAttendeeDTO> eventAttendees) {
-		this.eventAttendees = eventAttendees;
-	}
-
 }

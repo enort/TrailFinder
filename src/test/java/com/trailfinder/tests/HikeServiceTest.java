@@ -47,7 +47,7 @@ public class HikeServiceTest {
 
 	private void whenProfileIsSelected() {
 		// TODO Auto-generated method stub
-		profile = hikeService.getProfile(2);
+		//profile = hikeService.getProfile(2);
 	}
 
 	private void thenProfileReturnedIfExists() {

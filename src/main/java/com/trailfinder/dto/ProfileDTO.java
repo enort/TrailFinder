@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class ProfileDTO {
 
-	private int profileId;
 	private String firstName;
+	private String lastName;
 	private String bio;
 	private List<EventDTO> events;
 	
@@ -23,25 +23,12 @@ public class ProfileDTO {
 	 * @param bio
 	 * @param events
 	 */
-	public ProfileDTO(int profileId, String firstName, String bio, List<EventDTO> events) {
-		this.profileId = profileId;
+	public ProfileDTO(String firstName, String lastName, String bio, List<EventDTO> events) {
 		this.firstName = firstName;
 		this.bio = bio;
 		this.events = events;
 	}	
 	
-	/**
-	 * @return the profileId
-	 */
-	public int getProfileId() {
-		return profileId;
-	}
-	/**
-	 * @param profileId the profileId to set
-	 */
-	public void setProfileId(int profileId) {
-		this.profileId = profileId;
-	}
 	/**
 	 * @return the firstName
 	 */

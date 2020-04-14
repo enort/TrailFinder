@@ -48,8 +48,8 @@ public class TrailFinderController {
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String prof(Model model) {
-		ProfileDTO profile = hikeService.getProfile(0);
-		model.addAttribute("ProfileDTO", profile);
+		//ProfileDTO profile = hikeService.getProfile(0);
+		//model.addAttribute("ProfileDTO", profile);
 		return "profile";
 	}
 	

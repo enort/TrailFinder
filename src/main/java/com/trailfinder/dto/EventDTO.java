@@ -18,8 +18,8 @@ public class EventDTO {
 	private LocalDateTime eventEnd;
 	private double Latitude;
 	private double Longitude;
-	private ProfileDTO eventCreator;
-	private List<ProfileDTO> attendees;
+	private EventCreatorDTO eventCreator;
+	private List<EventAttendeeDTO> eventAttendees;
 	
 	/**
 	 * Create and initialize a new instance of the EventDTO
@@ -31,19 +31,17 @@ public class EventDTO {
 	 * @param latitude
 	 * @param longitude
 	 * @param eventCreator
-	 * @param attendees
 	 */
-	public EventDTO(int eventId, double distance, LocalDateTime eventStart, LocalDateTime eventEnd, double latitude, 
-			double longitude, ProfileDTO eventCreator, List<ProfileDTO> attendees) 
+	public EventDTO(double distance, LocalDateTime eventStart, LocalDateTime eventEnd, double latitude, 
+			double longitude, EventCreatorDTO eventCreator, List<EventAttendeeDTO> eventAttendees) 
 	{
-		this.eventId = eventId;
 		this.distance = distance;
 		this.eventStart = eventStart;
 		this.eventEnd = eventEnd;
 		this.Latitude = latitude;
 		this.Longitude = longitude;
 		this.eventCreator = eventCreator;
-		this.attendees = attendees;
+		this.eventAttendees = eventAttendees;
 	}
 	
 	/**
@@ -144,29 +142,29 @@ public class EventDTO {
 	/**
 	 * @return the eventCreator
 	 */
-	public ProfileDTO getEventCreator() {
+	public EventCreatorDTO getEventCreator() {
 		return eventCreator;
 	}
 
 	/**
 	 * @param eventCreator the eventCreator to set
 	 */
-	public void setEventCreator(ProfileDTO eventCreator) {
+	public void setEventCreator(EventCreatorDTO eventCreator) {
 		this.eventCreator = eventCreator;
 	}
 
 	/**
-	 * @return the attendees
+	 * @return the eventAttendees
 	 */
-	public List<ProfileDTO> getAttendees() {
-		return attendees;
+	public List<EventAttendeeDTO> getEventAttendees() {
+		return eventAttendees;
 	}
 
 	/**
-	 * @param atendees the attendees to set
+	 * @param eventAttendees the eventAttendees to set
 	 */
-	public void setAttendees(List<ProfileDTO> attendees) {
-		this.attendees = attendees;
+	public void setEventAttendees(List<EventAttendeeDTO> eventAttendees) {
+		this.eventAttendees = eventAttendees;
 	}
 
 }

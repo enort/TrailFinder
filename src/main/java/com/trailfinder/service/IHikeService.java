@@ -14,18 +14,13 @@ import com.trailfinder.dto.TrailDTO;
  *
  */
 public interface IHikeService {
-
-	/*
-	 * Retrieve a user's profile using a profileId
-	 * @return profile a ProfileDTO 
-	 */
-	public ProfileDTO getProfile(int profileId);
 	
 	/*
-	 * Save user profile using DAO access
-	 * @param profile a ProfileDTO 
+	 * Gets the list of attendees of an event
+	 * @param event the event dto the user is viewing
+	 * @return profiles a list of profiles
 	 */
-	public void saveProfile(ProfileDTO profile);
+	public List<ProfileDTO> getAttendees(EventDTO event);
 	
 	/*
 	 * Retrieve a list of nearby trails from Google Places

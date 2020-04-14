@@ -20,26 +20,6 @@ import com.trailfinder.dto.TrailDTO;
 public class HikeServiceStub  implements IHikeService {
 
 	@Override
-	public ProfileDTO getProfile(int profileId) {
-		// TODO create a List of profiles and check if the passed Id matches any
-		List<ProfileDTO> profiles = new ArrayList<ProfileDTO>();
-		
-		// Create 5 profiles
-		for (int i = 0; i < 5; i++)
-		{
-			profiles.add(new ProfileDTO(i, "TestName" + i, "TestBio", null));
-		}
-		
-		return profileId >= 0 && profileId < profiles.size() ? profiles.get(profileId) : null;
-	}
-
-	@Override
-	public void saveProfile(ProfileDTO profile) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<TrailDTO> getNearbyTrails() {
 		// TODO Auto-generated method stub
 		return null;
@@ -55,7 +35,7 @@ public class HikeServiceStub  implements IHikeService {
 		{
 			ProfileDTO profile = new ProfileDTO(i, "test " + i, "TestBio " + i, null);
 			
-			events.add(new EventDTO(i, 39.1330 + i, null, null, -84.4134 + i, i + (i/2), profile, null));
+			events.add(new EventDTO(i, 39.1330 + i, null, null, -84.4134 + i, i + (i/2), profile));
 		}
 		
 		return events;
@@ -65,6 +45,12 @@ public class HikeServiceStub  implements IHikeService {
 	public void createEvent(EventDTO event) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<ProfileDTO> getAttendees(EventDTO event) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

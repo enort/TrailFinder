@@ -57,7 +57,7 @@ public class HikeServiceTest {
 	
 	
 	@Test
-	public void getEvents_ReturnListOfEvents() {
+	public void getEvents_ReturnListOfEvents() throws Exception {
 		givenHomePageWithMapOfSurroundingArea();
 		whenMapRenders();
 		thenListOfEventsWillBeReturned();
@@ -68,7 +68,7 @@ public class HikeServiceTest {
 		
 	}
 
-	private void whenMapRenders() {
+	private void whenMapRenders() throws Exception {
 		// TODO Auto-generated method stub
 		events = hikeService.getEvents();
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -20,13 +21,13 @@ import com.trailfinder.dto.TrailDTO;
 public class HikeServiceStub  implements IHikeService {
 
 	@Override
-	public List<TrailDTO> getNearbyTrails() {
+	public List<TrailDTO> getNearbyTrails() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<EventDTO> getEvents() {
+	public List<EventDTO> getEvents() throws Exception {
 		// TODO Create list of events to be returned
 		List<EventDTO> events = new ArrayList<EventDTO>();
 		
@@ -42,13 +43,13 @@ public class HikeServiceStub  implements IHikeService {
 	}
 
 	@Override
-	public void createEvent(EventDTO event) {
+	public boolean createEvent(EventDTO event) throws Exception {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public List<ProfileDTO> getAttendees(EventDTO event) {
+	public List<EventAttendeeDTO> getAttendees(EventDTO event) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

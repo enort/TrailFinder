@@ -1,16 +1,32 @@
 package com.trailfinder.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /*
  * @author Konrad Schaller
  * DTO to represent attendees for event
  */
+@Entity
+@Table(name="eventattendees")
 public class EventAttendeeDTO {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="AttendeeID")
 	private int attendeeId;
+	@Column(name="EventID")
 	private int eventId;
+	@Column(name="AttendeeFirtsName")
 	private String attendeeFirstName;
+	@Column(name="AttendeeLastName")
 	private String attendeeLastname;
+	@Column(name="AttendeeEmail")
 	private String attendeeEmail;
+	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
 	// Custom constructor

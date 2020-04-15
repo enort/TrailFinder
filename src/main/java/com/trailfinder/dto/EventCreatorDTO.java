@@ -1,16 +1,32 @@
 package com.trailfinder.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /*
  * @author Konrad Schaller
  * A DTO that will map to database
  */
+@Entity
+@Table(name="eventcreators")
 public class EventCreatorDTO {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="CreatorID")
 	private int creatorId;
+	@Column(name="EventID")
 	private int eventId;
+	@Column(name="CreatorFirstName")
 	private String creatorFirstName;
+	@Column(name="CreatorLastName")
 	private String creatorLastName;
+	@Column(name="CreatorEmail")
 	private String creatorEmail;
+	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
 	// Custom constructor to build an event creator object

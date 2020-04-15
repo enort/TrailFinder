@@ -38,9 +38,10 @@ public class TrailFinderController {
 	/**
 	 * Handles return of home screen view and / end point
 	 * @return index
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String base(Model model) {
+	public String base(Model model) throws Exception {
 		List<EventDTO> events = hikeService.getEvents();
 		model.addAttribute("events", events);
 		return "index";

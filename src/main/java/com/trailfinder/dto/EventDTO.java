@@ -6,18 +6,36 @@ package com.trailfinder.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  * @author LookItsCashew
  * DTO for Events posted on application
  */
+@Entity
+@Table(name="events")
 public class EventDTO {
 
+	@Id
+	@GeneratedValue
+	@Column(name="EventID")
 	private int eventId;
+	@Column(name="Distance")
 	private double distance;
+	@Column(name="EventStart")
 	private LocalDateTime eventStart;
+	@Column(name="EventEnd")
 	private LocalDateTime eventEnd;
+	@Column(name="Latitude")
 	private String Latitude;
+	@Column(name="Longitude")
 	private String Longitude;
+	@Transient
 	private EventCreatorDTO eventCreator;
 	
 	/**

@@ -30,30 +30,7 @@ public class HikeServiceTest {
 	@Autowired
 	IHikeService hikeService;
 	
-	ProfileDTO profile;
 	List<EventDTO> events;
-	
-	@Test
-	public void getProfile_ReturnSelectedProfileUserExists() {
-		givenEventHasProfileOfCreator();
-		whenProfileIsSelected();
-		thenProfileReturnedIfExists();
-	}
-
-	private void givenEventHasProfileOfCreator() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void whenProfileIsSelected() {
-		// TODO Auto-generated method stub
-		//profile = hikeService.getProfile(2);
-	}
-
-	private void thenProfileReturnedIfExists() {
-		// TODO Auto-generated method stub
-		assertNotNull(profile);
-	}
 	
 	
 	@Test

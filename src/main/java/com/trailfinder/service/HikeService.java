@@ -42,7 +42,7 @@ public class HikeService implements IHikeService {
 
 	@Override
 	public boolean createEvent(EventDTO event) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO Attempt to persist the event and creator
 		eventDAO.createEvent(event);
 		return false;
 	}

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
-import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.dto.TrailDTO;
 
 /**
@@ -34,9 +33,7 @@ public class HikeServiceStub  implements IHikeService {
 		// Create 5 events
 		for (int i = 0; i < 5; i++)
 		{
-			//ProfileDTO profile = new ProfileDTO(i, "test " + i, "TestBio " + i, null);
 			
-			//events.add(new EventDTO(i, 39.1330 + i, null, null, -84.4134 + i, i + (i/2), profile));
 		}
 		
 		return events;

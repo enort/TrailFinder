@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trailfinder.dto.EventDTO;
-import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.service.IHikeService;
 
 /**

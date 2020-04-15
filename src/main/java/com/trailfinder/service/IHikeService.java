@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
-import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.dto.TrailDTO;
 
 /**

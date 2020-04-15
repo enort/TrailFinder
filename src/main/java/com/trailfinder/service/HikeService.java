@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.trailfinder.dao.IEventDAO;
 import com.trailfinder.dto.EventAttendeeDTO;
+import com.trailfinder.dto.EventCreatorDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
 
@@ -30,8 +31,13 @@ public class HikeService implements IHikeService {
 
 	@Override
 	public List<EventDTO> getEvents() throws Exception {
-		// TODO Auto-generated method stub
-		return eventDAO.fetchEvents();
+		// TODO Set the creators of the events and return the list of events
+		List<EventDTO> events = eventDAO.fetchEvents();
+		for (EventDTO event : events) {
+			EventCreatorDTO creator = new EventCreatorDTO(1, "Johnny", "guitar", "fakeemail@email.com", "5135555555");
+			event.setEventCreator(creator);
+		}
+		return events;
 	}
 
 	@Override

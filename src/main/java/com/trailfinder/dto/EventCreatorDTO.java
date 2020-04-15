@@ -29,6 +29,10 @@ public class EventCreatorDTO {
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
+	public EventCreatorDTO() {
+		
+	}
+	
 	// Custom constructor to build an event creator object
 	public EventCreatorDTO(int eventId, String creatorFirstName, String creatorLastName, String creatorEmail, String phoneNumber) {
 		this.eventId = eventId;

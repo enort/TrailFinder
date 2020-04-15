@@ -164,4 +164,8 @@ public class EventDTO {
 	public void setEventCreator(EventCreatorDTO eventCreator) {
 		this.eventCreator = eventCreator;
 	}
+	
+	public String toString() {
+		return eventCreator.getCreatorFirstName() + "'s hiking event";
+	}
 }

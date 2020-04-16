@@ -32,7 +32,7 @@ public interface IHikeService {
 	 * Retrieve all events using DAO access
 	 * @return events a list of EventDTOs
 	 */
-	public List<EventDTO> getEvents() throws Exception ;
+	public Iterable<EventDTO> getEvents() throws Exception ;
 	
 	/*
 	 * Create an event using DAO access

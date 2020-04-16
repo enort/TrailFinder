@@ -47,7 +47,7 @@ public class HikeServiceTest {
 
 	private void whenMapRenders() throws Exception {
 		// TODO Auto-generated method stub
-		events = hikeService.getEvents();
+		events = (List<EventDTO>) hikeService.getEvents();
 	}
 
 	private void thenListOfEventsWillBeReturned() {

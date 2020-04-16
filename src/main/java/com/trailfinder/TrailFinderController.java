@@ -41,7 +41,7 @@ public class TrailFinderController {
 	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String base(Model model) throws Exception {
-		List<EventDTO> events = hikeService.getEvents();
+		Iterable<EventDTO> events = hikeService.getEvents();
 		model.addAttribute("events", events);
 		return "index";
 	}

@@ -17,5 +17,5 @@ public interface IEventDAO {
 	/*
 	 * @return events a list of events
 	 */
-	public List<EventDTO> fetchEvents() throws Exception;
+	public Iterable<EventDTO> fetchEvents() throws Exception;
 }

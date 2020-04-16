@@ -21,10 +21,9 @@ public class EventDAO implements IEventDAO {
 	}
 
 	@Override
-	public List<EventDTO> fetchEvents() throws Exception {
+	public Iterable<EventDTO> fetchEvents() throws Exception {
 		// TODO return all events from table
-		
-		return (List<EventDTO>) eventRepository.findAll(); 
+		return eventRepository.findAll(); 
 	}
 
 }

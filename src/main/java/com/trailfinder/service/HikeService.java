@@ -30,9 +30,9 @@ public class HikeService implements IHikeService {
 	}
 
 	@Override
-	public List<EventDTO> getEvents() throws Exception {
+	public Iterable<EventDTO> getEvents() throws Exception {
 		// TODO Set the creators of the events and return the list of events
-		List<EventDTO> events = eventDAO.fetchEvents();
+		Iterable<EventDTO> events = eventDAO.fetchEvents();
 		for (EventDTO event : events) {
 			EventCreatorDTO creator = new EventCreatorDTO(1, "Johnny", "guitar", "fakeemail@email.com", "5135555555");
 			event.setEventCreator(creator);

@@ -30,34 +30,11 @@ public class HikeServiceTest {
 	@Autowired
 	IHikeService hikeService;
 	
-	ProfileDTO profile;
 	List<EventDTO> events;
 	
-	@Test
-	public void getProfile_ReturnSelectedProfileUserExists() {
-		givenEventHasProfileOfCreator();
-		whenProfileIsSelected();
-		thenProfileReturnedIfExists();
-	}
-
-	private void givenEventHasProfileOfCreator() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void whenProfileIsSelected() {
-		// TODO Auto-generated method stub
-		profile = hikeService.getProfile(2);
-	}
-
-	private void thenProfileReturnedIfExists() {
-		// TODO Auto-generated method stub
-		assertNotNull(profile);
-	}
-	
 	
 	@Test
-	public void getEvents_ReturnListOfEvents() {
+	public void getEvents_ReturnListOfEvents() throws Exception {
 		givenHomePageWithMapOfSurroundingArea();
 		whenMapRenders();
 		thenListOfEventsWillBeReturned();
@@ -68,9 +45,9 @@ public class HikeServiceTest {
 		
 	}
 
-	private void whenMapRenders() {
+	private void whenMapRenders() throws Exception {
 		// TODO Auto-generated method stub
-		events = hikeService.getEvents();
+		events = (List<EventDTO>) hikeService.getEvents();
 	}
 
 	private void thenListOfEventsWillBeReturned() {

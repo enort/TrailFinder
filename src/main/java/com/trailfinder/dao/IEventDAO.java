@@ -9,24 +9,13 @@ import com.trailfinder.dto.EventDTO;
 public interface IEventDAO {
 	
 	/*
-	 * @return eventList a list of Events represented by EventDTOs
+	 * @param event the event to create in persistence
+	 * @return true or false value of creation
 	 */
-	public EventDTO getEvent(int eventId);
-	
+	public boolean createEvent(EventDTO event) throws Exception;
+
 	/*
-	 * @param event creates an event visible to other users
+	 * @return events a list of events
 	 */
-	public void createEvent(EventDTO event);
-
-	/*
-	* @param event deletes an event that was a mistake
-	*/
-	public void deleteEvent(EventDTO event);
-
-	/*
-	* @param event updates an event that has a mistake
-	*/
-	public void updateEvent(EventDTO event);
-
-
+	public Iterable<EventDTO> fetchEvents() throws Exception;
 }

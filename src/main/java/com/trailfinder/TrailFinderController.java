@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trailfinder.dto.EventDTO;
-import com.trailfinder.dto.ProfileDTO;
 import com.trailfinder.service.IHikeService;
 
 /**
@@ -38,18 +37,19 @@ public class TrailFinderController {
 	/**
 	 * Handles return of home screen view and / end point
 	 * @return index
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String base(Model model) {
-		List<EventDTO> events = hikeService.getEvents();
+	public String base(Model model) throws Exception {
+		Iterable<EventDTO> events = hikeService.getEvents();
 		model.addAttribute("events", events);
 		return "index";
 	}
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String prof(Model model) {
-		ProfileDTO profile = hikeService.getProfile(0);
-		model.addAttribute("ProfileDTO", profile);
+		//ProfileDTO profile = hikeService.getProfile(0);
+		//model.addAttribute("ProfileDTO", profile);
 		return "profile";
 	}
 	

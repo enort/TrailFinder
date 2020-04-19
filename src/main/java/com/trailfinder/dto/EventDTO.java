@@ -6,20 +6,37 @@ package com.trailfinder.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  * @author LookItsCashew
  * DTO for Events posted on application
  */
+@Entity
+@Table(name="events")
 public class EventDTO {
 
+	@Id
+	@GeneratedValue
+	@Column(name="EventID")
 	private int eventId;
+	@Column(name="Distance")
 	private double distance;
+	@Column(name="EventStart")
 	private LocalDateTime eventStart;
+	@Column(name="EventEnd")
 	private LocalDateTime eventEnd;
-	private double Latitude;
-	private double Longitude;
-	private ProfileDTO eventCreator;
-	private List<ProfileDTO> attendees;
+	@Column(name="Latitude")
+	private String Latitude;
+	@Column(name="Longitude")
+	private String Longitude;
+	@Transient
+	private EventCreatorDTO eventCreator;
 	
 	/**
 	 * Create and initialize a new instance of the EventDTO
@@ -31,19 +48,16 @@ public class EventDTO {
 	 * @param latitude
 	 * @param longitude
 	 * @param eventCreator
-	 * @param attendees
 	 */
-	public EventDTO(int eventId, double distance, LocalDateTime eventStart, LocalDateTime eventEnd, double latitude, 
-			double longitude, ProfileDTO eventCreator, List<ProfileDTO> attendees) 
+	public EventDTO(double distance, LocalDateTime eventStart, LocalDateTime eventEnd, String latitude, 
+			String longitude, EventCreatorDTO eventCreator) 
 	{
-		this.eventId = eventId;
 		this.distance = distance;
 		this.eventStart = eventStart;
 		this.eventEnd = eventEnd;
 		this.Latitude = latitude;
 		this.Longitude = longitude;
 		this.eventCreator = eventCreator;
-		this.attendees = attendees;
 	}
 	
 	/**
@@ -109,64 +123,49 @@ public class EventDTO {
 		this.eventEnd = eventEnd;
 	}
 
-	/*
-	 * Sets value of Latitude of event start location
-	 * @param latitude of start location
+	/**
+	 * @return the latitude
 	 */
-	public void setLatitude(double latitude) {
-		this.Latitude = latitude;
-	}
-	
-	/*
-	 * Gets value of Latitude of start location
-	 * @return Latitude
-	 */
-	public double getLatitude() {
+	public String getLatitude() {
 		return Latitude;
 	}
-	
-	/*
-	 * Sets value of Longitude of start location
-	 * @param longitude of start location
+
+	/**
+	 * @param latitude the latitude to set
 	 */
-	public void setLongitude(double longitude) {
-		this.Longitude = longitude;
+	public void setLatitude(String latitude) {
+		Latitude = latitude;
 	}
-	
-	/*
-	 * Gets value of Longitude of start location
-	 * @return Longitude
+
+	/**
+	 * @return the longitude
 	 */
-	public double getLongitude() {
+	public String getLongitude() {
 		return Longitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(String longitude) {
+		Longitude = longitude;
 	}
 
 	/**
 	 * @return the eventCreator
 	 */
-	public ProfileDTO getEventCreator() {
+	public EventCreatorDTO getEventCreator() {
 		return eventCreator;
 	}
 
 	/**
 	 * @param eventCreator the eventCreator to set
 	 */
-	public void setEventCreator(ProfileDTO eventCreator) {
+	public void setEventCreator(EventCreatorDTO eventCreator) {
 		this.eventCreator = eventCreator;
 	}
-
-	/**
-	 * @return the attendees
-	 */
-	public List<ProfileDTO> getAttendees() {
-		return attendees;
+	
+	public String toString() {
+		return eventCreator.getCreatorFirstName() + "'s hiking event";
 	}
-
-	/**
-	 * @param atendees the attendees to set
-	 */
-	public void setAttendees(List<ProfileDTO> attendees) {
-		this.attendees = attendees;
-	}
-
 }

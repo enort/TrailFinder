@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
@@ -18,8 +20,8 @@ public class EventCreatorDTO {
 	@GeneratedValue
 	@Column(name="CreatorID")
 	private int creatorId;
-	@Column(name="EventID")
-	private int eventId;
+	//@Column(name="EventID")
+	//private int eventId;
 	@Column(name="CreatorFirstName")
 	private String creatorFirstName;
 	@Column(name="CreatorLastName")
@@ -29,13 +31,17 @@ public class EventCreatorDTO {
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
+	@OneToOne
+	@JoinColumn(name="EventID")
+	private EventDTO event;
+	
 	public EventCreatorDTO() {
 		
 	}
 	
 	// Custom constructor to build an event creator object
-	public EventCreatorDTO(int eventId, String creatorFirstName, String creatorLastName, String creatorEmail, String phoneNumber) {
-		this.eventId = eventId;
+	public EventCreatorDTO(String creatorFirstName, String creatorLastName, String creatorEmail, String phoneNumber) {
+		//this.eventId = eventId;
 		this.creatorFirstName = creatorFirstName;
 		this.creatorLastName = creatorLastName;
 		this.creatorEmail = creatorEmail;
@@ -53,18 +59,6 @@ public class EventCreatorDTO {
 	 */
 	public void setCreatorId(int creatorId) {
 		this.creatorId = creatorId;
-	}
-	/**
-	 * @return the eventId
-	 */
-	public int getEventId() {
-		return eventId;
-	}
-	/**
-	 * @param eventId the eventId to set
-	 */
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
 	}
 	/**
 	 * @return the creatorFirstName
@@ -115,6 +109,14 @@ public class EventCreatorDTO {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public EventDTO getEvent() {
+		return event;
+	}
+
+	public void setEvent(EventDTO event) {
+		this.event = event;
+	}
+
 	@Override
 	public String toString() {
 		return this.creatorFirstName + " " + this.creatorLastName;

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*
@@ -18,8 +20,8 @@ public class EventAttendeeDTO {
 	@GeneratedValue
 	@Column(name="AttendeeID")
 	private int attendeeId;
-	@Column(name="EventID")
-	private int eventId;
+	//@Column(name="EventID")
+	//private int eventId;
 	@Column(name="AttendeeFirtsName")
 	private String attendeeFirstName;
 	@Column(name="AttendeeLastName")
@@ -29,9 +31,13 @@ public class EventAttendeeDTO {
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
+	@ManyToOne
+	@JoinColumn(name="EventID")
+	private EventDTO event;
+	
 	// Custom constructor
-	public EventAttendeeDTO(int eventId, String attendeeFirstName, String attendeeLastName, String attendeeEmail, String phoneNumber) {
-		this.eventId = eventId;
+	public EventAttendeeDTO(String attendeeFirstName, String attendeeLastName, String attendeeEmail, String phoneNumber) {
+		//this.eventId = eventId;
 		this.attendeeFirstName = attendeeFirstName;
 		this.attendeeLastname = attendeeLastName;
 		this.attendeeEmail = attendeeEmail;
@@ -50,20 +56,6 @@ public class EventAttendeeDTO {
 	 */
 	public void setAttendeeId(int attendeeId) {
 		this.attendeeId = attendeeId;
-	}
-
-	/**
-	 * @return the eventId
-	 */
-	public int getEventId() {
-		return eventId;
-	}
-
-	/**
-	 * @param eventId the eventId to set
-	 */
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
 	}
 
 	/**

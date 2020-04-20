@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.trailfinder.dao.IEventCreatorDAO;
 import com.trailfinder.dao.IEventDAO;
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventCreatorDTO;
@@ -16,6 +17,8 @@ public class HikeService implements IHikeService {
 	
 	@Autowired
 	IEventDAO eventDAO;
+	@Autowired 
+	IEventCreatorDAO creatorDAO;
 
 	@Override
 	public List<EventAttendeeDTO> getAttendees(EventDTO event) throws Exception {
@@ -34,7 +37,7 @@ public class HikeService implements IHikeService {
 		// TODO Set the creators of the events and return the list of events
 		Iterable<EventDTO> events = eventDAO.fetchEvents();
 		for (EventDTO event : events) {
-			EventCreatorDTO creator = new EventCreatorDTO(1, "Johnny", "guitar", "fakeemail@email.com", "5135555555");
+			EventCreatorDTO creator = new EventCreatorDTO("Johnny", "guitar", "fakeemail@email.com", "5135555555");
 			event.setEventCreator(creator);
 		}
 		return events;
@@ -43,7 +46,11 @@ public class HikeService implements IHikeService {
 	@Override
 	public boolean createEvent(EventDTO event) throws Exception {
 		// TODO Attempt to persist the event and creator
-		eventDAO.createEvent(event);
+		boolean isEventCreated = eventDAO.createEvent(event);
+		boolean isCreatorSaved = creatorDAO.saveEventCreator(event.getEventCreator());
+		if (isEventCreated && isCreatorSaved) {
+			return true;
+		}
 		return false;
 	}
 

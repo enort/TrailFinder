@@ -16,7 +16,10 @@ public class EventDAO implements IEventDAO {
 	@Override
 	public boolean createEvent(EventDTO event) throws Exception {
 		// TODO save event info into the table and return if successful
-		eventRepository.save(event);
+		EventDTO eventCopy = eventRepository.save(event);
+		if (eventCopy.equals(event)) {
+			return true;
+		}
 		return false;
 	}
 

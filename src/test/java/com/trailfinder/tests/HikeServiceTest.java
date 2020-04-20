@@ -35,6 +35,8 @@ public class HikeServiceTest {
 	EventCreatorDTO creator;
 	EventDTO event;
 	EventCreatorDTO creatorCopy;
+	EventDTO eventCopy;
+	boolean isEventCreated;
 	
 	
 	@Test
@@ -71,16 +73,19 @@ public class HikeServiceTest {
 		// TODO Create an "Event" that will register an event with the creator
 		creator = new EventCreatorDTO("Konrad", "Schaller", "yeetville@ohio.com", "5135555555");
 		//LocalDateTime timeNow = ;
-		event = new EventDTO(5.0, LocalDateTime.now(), LocalDateTime.of(2020, 4, 19, 7, 30), "34.71", "-84.52", creator);
-
-		// Create copy of the creator
+		event = new EventDTO(5.0, LocalDateTime.of(2020, 4, 19, 4, 30), LocalDateTime.of(2020, 4, 19, 7, 30), "34.71", "-84.52", creator);
+		eventCopy = event;
+		eventCopy.setEventCreator(null);
 		creatorCopy = event.getEventCreator();
+		
 	}
 
 	private void whenTheEventIsSaved() {
 		// TODO Save the event along with the creator info
+		creator.setEvent(event);
+		event.setEventCreator(creator);
 		try {
-			hikeService.createEvent(event);
+			isEventCreated = hikeService.createEvent(event);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +94,7 @@ public class HikeServiceTest {
 
 	private void thenEventAndCreatorSaveReturnsTrue() {
 		// TODO Auto-generated method stub
-		
+		assertTrue(isEventCreated);
 	}
 	
 }

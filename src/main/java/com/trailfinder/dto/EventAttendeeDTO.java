@@ -22,7 +22,7 @@ public class EventAttendeeDTO {
 	private int attendeeId;
 	//@Column(name="EventID")
 	//private int eventId;
-	@Column(name="AttendeeFirtsName")
+	@Column(name="AttendeeFirstName")
 	private String attendeeFirstName;
 	@Column(name="AttendeeLastName")
 	private String attendeeLastname;

@@ -16,7 +16,7 @@ public class EventCreatorDAO implements IEventCreatorDAO {
 
 	@Override
 	public boolean saveEventCreator(EventCreatorDTO eventCreator) throws Exception {
-		// TODO Save the registered creator of the event
+		// Save the registered creator of the event
 		EventCreatorDTO creatorCopy = creatorRepository.save(eventCreator);
 		if (creatorCopy.equals(eventCreator)) {
 			return true;

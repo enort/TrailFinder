@@ -45,7 +45,7 @@ public class HikeService implements IHikeService {
 
 	@Override
 	public boolean createEvent(EventDTO event) throws Exception {
-		// TODO Attempt to persist the event and creator
+		// persist the event and creator
 		boolean isEventCreated = eventDAO.createEvent(event);
 		boolean isCreatorSaved = creatorDAO.saveEventCreator(event.getEventCreator());
 		if (isEventCreated && isCreatorSaved) {

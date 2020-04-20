@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.trailfinder.dao.IEventDAO;
 import com.trailfinder.dto.*;
 import com.trailfinder.service.IHikeService;
 
@@ -37,6 +39,11 @@ public class HikeServiceTest {
 	EventCreatorDTO creatorCopy;
 	EventDTO eventCopy;
 	boolean isEventCreated;
+	
+	@Autowired
+	IEventDAO eventDAO;
+
+	private boolean isEventAttended;
 	
 	
 	@Test
@@ -96,5 +103,37 @@ public class HikeServiceTest {
 		// TODO Auto-generated method stub
 		assertTrue(isEventCreated);
 	}
+	
+	@Test
+	public void attendEvent_AttendEventWithAttendeeInfo() throws Exception {
+		givenAnEventExists();
+		whenTheEventIsAttended();
+		thenAttendeeSaveReturnsTrue();
+	}
+
+	private void givenAnEventExists() throws Exception {
+		// TODO retrieve an event from persistence and attend it
+		Optional<EventDTO> event = eventDAO.fetchEventById(6);
+		this.event = event.get();
+	}
+
+	private void whenTheEventIsAttended() {
+		// TODO Join the event and persist the attendee
+		EventAttendeeDTO attendee = new EventAttendeeDTO("David", "Tennant", "fakeemaillisting@email.com", "5555555555");
+		attendee.setEvent(event);
+		attendee.setEventId(event.getEventId());
+		try {
+			isEventAttended = hikeService.attendEvent(attendee);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void thenAttendeeSaveReturnsTrue() {
+		// TODO Assert the value of the event being attended
+		assertTrue(isEventAttended);
+	}
+	
 	
 }

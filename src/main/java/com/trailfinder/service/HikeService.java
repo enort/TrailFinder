@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.trailfinder.dao.IEventAttendeeDAO;
 import com.trailfinder.dao.IEventCreatorDAO;
 import com.trailfinder.dao.IEventDAO;
 import com.trailfinder.dto.EventAttendeeDTO;
@@ -19,6 +20,8 @@ public class HikeService implements IHikeService {
 	IEventDAO eventDAO;
 	@Autowired 
 	IEventCreatorDAO creatorDAO;
+	@Autowired
+	IEventAttendeeDAO attendeeDAO;
 
 	@Override
 	public List<EventAttendeeDTO> getAttendees(EventDTO event) throws Exception {
@@ -52,6 +55,13 @@ public class HikeService implements IHikeService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean attendEvent(EventAttendeeDTO attendee) throws Exception {
+		// TODO persist the attendee
+		boolean isEventAttended = attendeeDAO.saveEventAttendee(attendee);
+		return isEventAttended;
 	}
 
 }

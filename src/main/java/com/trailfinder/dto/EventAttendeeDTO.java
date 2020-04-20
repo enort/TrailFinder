@@ -20,8 +20,8 @@ public class EventAttendeeDTO {
 	@GeneratedValue
 	@Column(name="AttendeeID")
 	private int attendeeId;
-	//@Column(name="EventID")
-	//private int eventId;
+	@Column(name="EventID")
+	private int eventId;
 	@Column(name="AttendeeFirstName")
 	private String attendeeFirstName;
 	@Column(name="AttendeeLastName")
@@ -32,8 +32,13 @@ public class EventAttendeeDTO {
 	private String phoneNumber;
 	
 	@ManyToOne
-	@JoinColumn(name="EventID")
+	@JoinColumn(name="EventID", referencedColumnName="EventID", insertable=false, updatable=false)
 	private EventDTO event;
+	
+	// Default constructor
+	public EventAttendeeDTO() {
+		
+	}
 	
 	// Custom constructor
 	public EventAttendeeDTO(String attendeeFirstName, String attendeeLastName, String attendeeEmail, String phoneNumber) {
@@ -114,6 +119,22 @@ public class EventAttendeeDTO {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public EventDTO getEvent() {
+		return event;
+	}
+
+	public void setEvent(EventDTO event) {
+		this.event = event;
+	}
+
+	public int getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
+
 	@Override
 	public String toString() {
 		return this.attendeeFirstName + " " + this.attendeeLastname;

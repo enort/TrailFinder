@@ -8,6 +8,6 @@ import com.trailfinder.dto.EventAttendeeDTO;
 
 public interface EventAttendeeRepository extends CrudRepository<EventAttendeeDTO, Integer> {
 
-	public List<EventAttendeeDTO> findByEventId(int eventId);
+	List<EventAttendeeDTO> findByEventId(int eventId);
 	
 }

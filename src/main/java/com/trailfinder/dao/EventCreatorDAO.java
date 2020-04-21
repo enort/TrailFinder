@@ -1,6 +1,5 @@
 package com.trailfinder.dao;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,9 +24,9 @@ public class EventCreatorDAO implements IEventCreatorDAO {
 	}
 
 	@Override
-	public Optional<EventCreatorDTO> fetchEventCreator(EventDTO event) throws Exception {
+	public EventCreatorDTO fetchEventCreator(EventDTO event) throws Exception {
 		// TODO Fetch the creator of the event based on event passed in
-		return creatorRepository.findById(event.getEventCreator().getCreatorId());
+		return creatorRepository.findByEventId(event.getEventId());
 	}
 
 }

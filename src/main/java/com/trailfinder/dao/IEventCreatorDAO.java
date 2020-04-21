@@ -19,6 +19,6 @@ public interface IEventCreatorDAO {
 	 * @param event the event to fetch the creator from
 	 * @return eventCreator the creator of the event
 	 */
-	public Optional<EventCreatorDTO> fetchEventCreator(EventDTO event) throws Exception;
+	public EventCreatorDTO fetchEventCreator(EventDTO event) throws Exception;
 	
 }

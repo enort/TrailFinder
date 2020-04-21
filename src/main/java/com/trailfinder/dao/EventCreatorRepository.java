@@ -6,4 +6,6 @@ import com.trailfinder.dto.EventCreatorDTO;
 
 public interface EventCreatorRepository extends CrudRepository<EventCreatorDTO, Integer> {
 
+	EventCreatorDTO findByEventId(int eventId);
+	
 }

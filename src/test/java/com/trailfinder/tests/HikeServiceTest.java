@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.trailfinder.dao.IEventAttendeeDAO;
 import com.trailfinder.dao.IEventDAO;
 import com.trailfinder.dto.*;
 import com.trailfinder.service.IHikeService;
@@ -39,9 +40,12 @@ public class HikeServiceTest {
 	EventCreatorDTO creatorCopy;
 	EventDTO eventCopy;
 	boolean isEventCreated;
+	List<EventAttendeeDTO> attendees;
 	
 	@Autowired
 	IEventDAO eventDAO;
+	@Autowired 
+	IEventAttendeeDAO attendeeDAO;
 
 	private boolean isEventAttended;
 	
@@ -65,7 +69,7 @@ public class HikeServiceTest {
 
 	private void thenListOfEventsWillBeReturned() {
 		// TODO Auto-generated method stub
-		assertEquals(5, events.size());
+		assertNotNull(events);
 	}
 	
 	
@@ -135,5 +139,21 @@ public class HikeServiceTest {
 		assertTrue(isEventAttended);
 	}
 	
+	@Test
+	public void showAttendees_ReturnListOfAttendeesForEvent() throws Exception {
+		givenAnEventExists();
+		whenRequestingWhoAttended();
+		thenAttendeeListReturnsNotNull();
+	}
+
+	private void whenRequestingWhoAttended() throws Exception {
+		// TODO Auto-generated method stub
+		attendees = attendeeDAO.fetchEventAttendees(event);
+	}
+
+	private void thenAttendeeListReturnsNotNull() {
+		// TODO Auto-generated method stub
+		assertNotNull(attendees);
+	}
 	
 }

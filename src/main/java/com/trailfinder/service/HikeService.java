@@ -25,8 +25,12 @@ public class HikeService implements IHikeService {
 
 	@Override
 	public List<EventAttendeeDTO> getAttendees(EventDTO event) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// Return the list of attendees for an event
+		List<EventAttendeeDTO> attendees = attendeeDAO.fetchEventAttendees(event);
+		for (EventAttendeeDTO attendee : attendees) {
+			attendee.setEvent(event);
+		}
+		return attendees;
 	}
 
 	@Override
@@ -37,11 +41,11 @@ public class HikeService implements IHikeService {
 
 	@Override
 	public Iterable<EventDTO> getEvents() throws Exception {
-		// TODO Set the creators of the events and return the list of events
+		// Set the creators of the events and return the list of events
 		Iterable<EventDTO> events = eventDAO.fetchEvents();
 		for (EventDTO event : events) {
-			EventCreatorDTO creator = new EventCreatorDTO("Johnny", "guitar", "fakeemail@email.com", "5135555555");
-			event.setEventCreator(creator);
+			event.setEventCreator(creatorDAO.fetchEventCreator(event));
+			event.getEventCreator().setEvent(event);
 		}
 		return events;
 	}
@@ -61,7 +65,7 @@ public class HikeService implements IHikeService {
 	
 	@Override
 	public boolean attendEvent(EventAttendeeDTO attendee) throws Exception {
-		// TODO persist the attendee
+		// persist the attendee
 		boolean isEventAttended = attendeeDAO.saveEventAttendee(attendee);
 		return isEventAttended;
 	}

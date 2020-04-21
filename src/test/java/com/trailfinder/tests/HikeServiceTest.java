@@ -78,9 +78,9 @@ public class HikeServiceTest {
 
 	private void givenARegisteredEventHasACreator() {
 		// TODO Create an "Event" that will register an event with the creator
-		creator = new EventCreatorDTO("Konrad", "Schaller", "yeetville@ohio.com", "5135555555");
+		creator = new EventCreatorDTO("John", "Lennon", "lenon@tbeatles.com", "5555555555");
 		//LocalDateTime timeNow = ;
-		event = new EventDTO(5.0, LocalDateTime.of(2020, 4, 19, 4, 30), LocalDateTime.of(2020, 4, 19, 7, 30), "34.71", "-84.52", creator);
+		event = new EventDTO(5.0, LocalDateTime.of(2020, 4, 20, 4, 20), LocalDateTime.of(2020, 4, 10, 7, 45), "34.71", "-84.52", creator);
 		eventCopy = event;
 		eventCopy.setEventCreator(null);
 		creatorCopy = event.getEventCreator();

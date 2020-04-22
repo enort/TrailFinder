@@ -4,7 +4,6 @@
 package com.trailfinder.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
@@ -54,6 +53,6 @@ public interface IHikeService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Optional<EventDTO> fetchEventById(int eventId) throws Exception;
+	public EventDTO fetchEventById(int eventId) throws Exception;
 
 }

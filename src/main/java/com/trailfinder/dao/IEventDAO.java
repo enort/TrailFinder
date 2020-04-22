@@ -1,6 +1,5 @@
 package com.trailfinder.dao;
 
-import java.util.Optional;
 
 import com.trailfinder.dto.EventDTO;
 
@@ -20,5 +19,5 @@ public interface IEventDAO {
 	 */
 	public Iterable<EventDTO> fetchEvents() throws Exception;
 
-	Optional<EventDTO> fetchEventById(int id) throws Exception;
+	EventDTO fetchEventById(int id) throws Exception;
 }

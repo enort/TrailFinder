@@ -4,6 +4,7 @@
 package com.trailfinder;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -59,6 +62,22 @@ public class TrailFinderController {
 		model.addAttribute("events", events);
 		return "index";
 	}
+	
+	@RequestMapping(value="/Event", method=RequestMethod.GET)
+	public String evt(@RequestParam(value="eventId") int eventId, Model model) {
+		Optional<EventDTO> eventDTObyID;
+		EventDTO eventDTO=null;
+		//int eventId=1;
+		try {
+			eventDTObyID = hikeService.fetchEventById(eventId);
+			eventDTO=eventDTObyID.get();
+			model.addAttribute("event", eventDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	return "eventdetails";}
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String prof(Model model) {

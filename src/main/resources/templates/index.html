@@ -76,7 +76,7 @@
 	  		  // The map, centered at current location
 	  		  map = new google.maps.Map(
 	  		      document.getElementById('map'), options);
-	  		  // The marker, positioned at Cincinnati
+	  		 
 	  		  var infoWindow = new google.maps.InfoWindow;
 	            
 	            infoWindow.setPosition(pos);
@@ -107,8 +107,14 @@
 	      function createTrails(pos) {
 	 		 $.getJSON("/fetchTrailList", { lat: pos.lat, lng: pos.lng }, function (data) {
 	 			 $.each(data, function (key, value) {
-	 				 console.log(data[key]);
+	 				console.log(data[key]);
+	 				var infoWindow = new google.maps.InfoWindow;
 	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, map: map, icon: trailMarker});
+	 				infoWindow.setPosition({ lat: value.latitude, lng: value.longitude });
+	 				infoWindow.setContent('<h3>' + value.name + '</h3>' + '<p>Coords: ' + value.latitude + ', ' + value.longitude + '</p>');
+	 				marker.addListener('click', function() {
+	 					infoWindow.open(map, marker);
+	 				});
 	 			 });
 	 		 });
 	 	 	}

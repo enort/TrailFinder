@@ -39,4 +39,6 @@ public interface IHikeService {
 	 * @param profile a ProfileDTO 
 	 */
 	public boolean createEvent(EventDTO event) throws Exception ;
+
+	boolean attendEvent(EventAttendeeDTO attendee) throws Exception;
 }

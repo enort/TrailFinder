@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*
@@ -20,7 +22,7 @@ public class EventAttendeeDTO {
 	private int attendeeId;
 	@Column(name="EventID")
 	private int eventId;
-	@Column(name="AttendeeFirtsName")
+	@Column(name="AttendeeFirstName")
 	private String attendeeFirstName;
 	@Column(name="AttendeeLastName")
 	private String attendeeLastname;
@@ -29,9 +31,18 @@ public class EventAttendeeDTO {
 	@Column(name="PhoneNumber")
 	private String phoneNumber;
 	
+	@ManyToOne
+	@JoinColumn(name="EventID", referencedColumnName="EventID", insertable=false, updatable=false)
+	private EventDTO event;
+	
+	// Default constructor
+	public EventAttendeeDTO() {
+		
+	}
+	
 	// Custom constructor
-	public EventAttendeeDTO(int eventId, String attendeeFirstName, String attendeeLastName, String attendeeEmail, String phoneNumber) {
-		this.eventId = eventId;
+	public EventAttendeeDTO(String attendeeFirstName, String attendeeLastName, String attendeeEmail, String phoneNumber) {
+		//this.eventId = eventId;
 		this.attendeeFirstName = attendeeFirstName;
 		this.attendeeLastname = attendeeLastName;
 		this.attendeeEmail = attendeeEmail;
@@ -50,20 +61,6 @@ public class EventAttendeeDTO {
 	 */
 	public void setAttendeeId(int attendeeId) {
 		this.attendeeId = attendeeId;
-	}
-
-	/**
-	 * @return the eventId
-	 */
-	public int getEventId() {
-		return eventId;
-	}
-
-	/**
-	 * @param eventId the eventId to set
-	 */
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
 	}
 
 	/**
@@ -122,6 +119,22 @@ public class EventAttendeeDTO {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public EventDTO getEvent() {
+		return event;
+	}
+
+	public void setEvent(EventDTO event) {
+		this.event = event;
+	}
+
+	public int getEventId() {
+		return eventId;
+	}
+
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
+
 	@Override
 	public String toString() {
 		return this.attendeeFirstName + " " + this.attendeeLastname;

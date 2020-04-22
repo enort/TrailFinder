@@ -65,12 +65,12 @@ public class TrailFinderController {
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {
-		Optional<EventDTO> eventDTObyID;
+		EventDTO eventDTObyID;
 		EventDTO eventDTO=null;
 		//int eventId=1;
 		try {
 			eventDTObyID = hikeService.fetchEventById(eventId);
-			eventDTO=eventDTObyID.get();
+			eventDTO=eventDTObyID;
 			model.addAttribute("event", eventDTO);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

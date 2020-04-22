@@ -50,6 +50,12 @@ public class HikeServiceStub  implements IHikeService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean attendEvent(EventAttendeeDTO attendee) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 

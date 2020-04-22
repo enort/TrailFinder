@@ -1,6 +1,7 @@
 package com.trailfinder.dao;
 
-import java.util.List;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,15 +16,23 @@ public class EventDAO implements IEventDAO {
 	
 	@Override
 	public boolean createEvent(EventDTO event) throws Exception {
-		// TODO save event info into the table and return if successful
-		eventRepository.save(event);
+		// save event info into the table and return if successful
+		EventDTO eventCopy = eventRepository.save(event);
+		if (eventCopy.equals(event)) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public Iterable<EventDTO> fetchEvents() throws Exception {
-		// TODO return all events from table
+		// return all events from table
 		return eventRepository.findAll(); 
+	}
+	
+	@Override
+	public Optional<EventDTO> fetchEventById(int id) throws Exception {
+		return eventRepository.findById(id);
 	}
 
 }

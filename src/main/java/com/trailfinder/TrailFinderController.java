@@ -3,7 +3,6 @@
  */
 package com.trailfinder;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,8 +39,14 @@ public class TrailFinderController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String base(Model model) throws Exception {
-		Iterable<EventDTO> events = hikeService.getEvents();
+	public String base(Model model) {
+		Iterable<EventDTO> events = null;
+		try {
+			events = hikeService.getEvents();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("events", events);
 		return "index";
 	}
@@ -52,6 +57,13 @@ public class TrailFinderController {
 		//model.addAttribute("ProfileDTO", profile);
 		return "profile";
 	}
+	
+	/**
+	 * Needs to return the JSON of all trails from Google Places
+	 * @param lat the latitiude of the user's current location
+	 * @param lng the longitude of the user's current location
+	 * @return trails the trails to be returned to the view
+	 */
 	
 
 }

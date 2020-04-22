@@ -118,8 +118,8 @@ public class HikeServiceTest {
 
 	private void givenAnEventExists() throws Exception {
 		// TODO retrieve an event from persistence and attend it
-		Optional<EventDTO> event = hikeService.fetchEventById(6);
-		this.event = event.get();
+		EventDTO event = hikeService.fetchEventById(6);
+		this.event = event;
 	}
 
 	private void whenTheEventIsAttended() {

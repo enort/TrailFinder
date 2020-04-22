@@ -52,6 +52,14 @@
 	<script>
 	 function initMap() {
 		 var map;
+		 var trailMarker = {
+		          path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+		          fillColor: '#019730',
+		          fillOpacity: 0.95,
+		          scale: 0.8,
+		          strokeColor: '#01AD37',
+		          strokeWeight: 0.5
+		        };
 	        //Geolocation
 	        if (navigator.geolocation) {
 	          navigator.geolocation.getCurrentPosition(function(position) {
@@ -100,7 +108,7 @@
 	 		 $.getJSON("/fetchTrailList", { lat: pos.lat, lng: pos.lng }, function (data) {
 	 			 $.each(data, function (key, value) {
 	 				 console.log(data[key]);
-	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, label: 'T', map: map});
+	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, map: map, icon: trailMarker});
 	 			 });
 	 		 });
 	 	 	}

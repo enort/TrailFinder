@@ -11,7 +11,8 @@ package com.trailfinder.dto;
 public class TrailDTO {
 	
 	// Private fields
-	private int id;
+	private String id;
+	private String placeId;
 	private String name;
 	private double latitude;
 	private double longitude;
@@ -23,14 +24,26 @@ public class TrailDTO {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+	/**
+	 * @return the placeId
+	 */
+	public String getPlaceId() {
+		return placeId;
+	}
+	/**
+	 * @param placeId the placeId to set
+	 */
+	public void setPlaceId(String placeId) {
+		this.placeId = placeId;
 	}
 	/**
 	 * @return the name

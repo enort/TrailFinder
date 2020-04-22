@@ -4,6 +4,7 @@
 package com.trailfinder.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
@@ -45,6 +46,14 @@ public interface IHikeService {
 	 * @param attendee the attendee to add
 	 * @return value of successful save or not
 	 */
-	boolean attendEvent(EventAttendeeDTO attendee) throws Exception;
+	public boolean attendEvent(EventAttendeeDTO attendee) throws Exception;
+
+	/**
+	 * returns the event dto by Id
+	 * @param eventId
+	 * @return
+	 * @throws Exception
+	 */
+	public Optional<EventDTO> fetchEventById(int eventId) throws Exception;
 
 }

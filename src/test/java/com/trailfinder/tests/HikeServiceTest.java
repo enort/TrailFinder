@@ -3,7 +3,6 @@
  */
 package com.trailfinder.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.trailfinder.dao.IEventAttendeeDAO;
 import com.trailfinder.dao.IEventDAO;
+import com.trailfinder.dao.ITrailDAO;
 import com.trailfinder.dto.*;
 import com.trailfinder.service.IHikeService;
 
@@ -41,13 +41,14 @@ public class HikeServiceTest {
 	EventDTO eventCopy;
 	boolean isEventCreated;
 	List<EventAttendeeDTO> attendees;
+	List<TrailDTO> trails;
+	double lat;
+	double lng;
 	
-	@Autowired
-	IEventDAO eventDAO;
-	@Autowired 
-	IEventAttendeeDAO attendeeDAO;
 
 	private boolean isEventAttended;
+	
+	String placesResponse;
 	
 	
 	@Test
@@ -117,7 +118,7 @@ public class HikeServiceTest {
 
 	private void givenAnEventExists() throws Exception {
 		// TODO retrieve an event from persistence and attend it
-		Optional<EventDTO> event = eventDAO.fetchEventById(6);
+		Optional<EventDTO> event = hikeService.fetchEventById(6);
 		this.event = event.get();
 	}
 
@@ -148,12 +149,36 @@ public class HikeServiceTest {
 
 	private void whenRequestingWhoAttended() throws Exception {
 		// TODO Auto-generated method stub
-		attendees = attendeeDAO.fetchEventAttendees(event);
+		attendees = hikeService.getAttendees(event);
 	}
 
 	private void thenAttendeeListReturnsNotNull() {
 		// TODO Auto-generated method stub
 		assertNotNull(attendees);
+	}
+	
+	@Test
+	public void fetchTrails_FindTrailsNearUserLocation() throws Exception {
+		givenAUserHasCurrentLocation();
+		whenTrailsAreRequested();
+		thenGooglePlacesWillReturnResults();
+	}
+
+	private void givenAUserHasCurrentLocation() {
+		// TODO Pass in user location info 
+		lat = 34.75;
+		lng = -84.51;
+	}
+
+	private void whenTrailsAreRequested() throws Exception {
+		// TODO Auto-generated method stub
+		// Call to Google Places
+		trails = hikeService.getNearbyTrails(lat, lng);
+	}
+
+	private void thenGooglePlacesWillReturnResults() {
+		// TODO Auto-generated method stub
+		assertNotNull(trails);
 	}
 	
 }

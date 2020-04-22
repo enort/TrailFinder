@@ -114,9 +114,13 @@ public class HikeService implements IHikeService {
 	}
 	
 	@Override
-	public Optional<EventDTO> fetchEventById(int eventId) throws Exception {
+	public EventDTO fetchEventById(int eventId) throws Exception {
 		// Return the event by Id
-		return eventDAO.fetchEventById(eventId);
+		EventDTO event = eventDAO.fetchEventById(eventId);
+		event.setEventCreator(creatorDAO.fetchEventCreator(event));
+		event.getEventCreator().setEvent(event);
+	
+		return event;
 	}
 
 }

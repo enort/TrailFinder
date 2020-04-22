@@ -51,8 +51,15 @@
 	</div>
 	<script>
 	 function initMap() {
-		  
-
+		 var map;
+		 var trailMarker = {
+		          path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
+		          fillColor: '#019730',
+		          fillOpacity: 0.95,
+		          scale: 0.8,
+		          strokeColor: '#01AD37',
+		          strokeWeight: 0.5
+		        };
 	        //Geolocation
 	        if (navigator.geolocation) {
 	          navigator.geolocation.getCurrentPosition(function(position) {
@@ -67,20 +74,22 @@
 	  				  center:pos
 	  		  }
 	  		  // The map, centered at current location
-	  		  var map = new google.maps.Map(
+	  		  map = new google.maps.Map(
 	  		      document.getElementById('map'), options);
-	  		  // The marker, positioned at Cincinnati
-	  		  var marker = new google.maps.Marker({position: {lat:39.11589,lng:-84.52465}, map: map});
+	  		 
 	  		  var infoWindow = new google.maps.InfoWindow;
 	            
 	            infoWindow.setPosition(pos);
 	            infoWindow.setContent('You are here!');
 	            infoWindow.open(map);
 	            //map.setCenter(pos); // center map to user cordinates
-	            var marker = new google.maps.Marker({position: pos, map: map}); //set marker to user current location
+	            // Creates trails in map
+	            createTrails(pos);
 	          }, function() {
 	            handleLocationError(true, infoWindow, map.getCenter());
 	          });
+	          
+	          
 	        } else {
 	          // Browser doesn't support Geolocation
 	          handleLocationError(false, infoWindow, map.getCenter());
@@ -93,9 +102,25 @@
 	                              'Error: The Geolocation service failed.' :
 	                              'Error: Your browser doesn\'t support geolocation.');
 	        infoWindow.open(map);
-	     
+	    
 			} 
+	      function createTrails(pos) {
+	 		 $.getJSON("/fetchTrailList", { lat: pos.lat, lng: pos.lng }, function (data) {
+	 			 $.each(data, function (key, value) {
+	 				console.log(data[key]);
+	 				var infoWindow = new google.maps.InfoWindow;
+	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, map: map, icon: trailMarker});
+	 				infoWindow.setPosition({ lat: value.latitude, lng: value.longitude });
+	 				infoWindow.setContent('<h3>' + value.name + '</h3>' + '<p>Coords: ' + value.latitude + ', ' + value.longitude + '</p>');
+	 				marker.addListener('click', function() {
+	 					infoWindow.open(map, marker);
+	 				});
+	 			 });
+	 		 });
+	 	 	}
 	     }
+	 
+	 
 	</script> 
 	<script async="true" defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmC6Uco6nl8sRYwKBa8Xnjll3olfbYGKM&callback=initMap">

@@ -7,12 +7,16 @@ package com.trailfinder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -69,7 +73,8 @@ public class TrailFinderController {
 	 * @param lng the longitude of the user's current location
 	 * @return trails the trails to be returned to the view
 	 */
-	@RequestMapping(value="/fetchTrailList", method=RequestMethod.GET)
+	@RequestMapping(value="/fetchTrailList", method=RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@ResponseBody
 	public List<TrailDTO> fetchTrailList(@RequestParam(value="lat") double lat, @RequestParam(value="lng") double lng) {
 		// List of trails to return 
 		List<TrailDTO> trails = new ArrayList<>();
@@ -79,6 +84,7 @@ public class TrailFinderController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		return trails;
 	}
 

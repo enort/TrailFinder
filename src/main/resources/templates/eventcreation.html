@@ -20,14 +20,11 @@
 	<div id="main" class="container">
 		<div th:replace = "fragments/headbar :: navbar"></div>
 		<div>
-		<form action="#" th:action="@{/eventcreation}" th:object="${EventCreatorDTO}" method="GET">
-		<input type="text" th:name="creatorFname"  placeholder="First Name"/><br />
-		<input type="text" th:name="creatorLname"  placeholder="Last Name"/><br />
-		<input type="text" th:name="creatorEmail"  placeholder="Email"/><br />
-		<input type="text" th:name="creatorPhone"  placeholder="Phone"/><br />
-		<input type="text" th:name="eventLat" /><br />
-		<input type="text" th:name="eventLong" /><br />
-		<button type="submit" th:name="action" th:value="in">create</button>
+		
+		<form action="#" th:action="@{/saveEvent}" th:object="${eventDTO}" method="GET">
+		<input type="text" name="latitude" placeholder="Latitude" /><br />
+		<input type="text" name="longitude" placeholder="Longitude" /><br />
+		<button type="submit" name="submit" value="0">create</button>
 		</form>
 		</div>
 	</div>>

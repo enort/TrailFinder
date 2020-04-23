@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.trailfinder.dto.EventCreatorDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
 import com.trailfinder.service.IHikeService;
@@ -35,6 +35,7 @@ public class TrailFinderController {
 	
 	@Autowired
 	private IHikeService hikeService;
+	
 
 	/**
 	 * Handles return of home screen view and index end point
@@ -63,15 +64,14 @@ public class TrailFinderController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/saveEvent", method=RequestMethod.GET)
+	public String saveEvent(EventDTO eventDTO) {
+		eventDTO.setEventId(10);
+		return "eventcreation";
+	}
 	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
-	public String create(
-			@RequestParam(value="creatorFname",required=false) String creatorFname,
-			@RequestParam(value="creatorLname",required=false) String creatorLname,
-			@RequestParam(value="creatorEmail",required=false) String creatorEmail,
-			@RequestParam(value="creatorPhone",required=false) String creatorPhone,
-			@RequestParam(value="eventLat",required=true, defaultValue="0.0") String eventLat,
-			@RequestParam(value="eventLong",required=true, defaultValue="0.0") String eventLong,
-			Model model) {
+	public String create(Model model) {
+		model.addAttribute("eventDTO", new EventDTO());
 		return "eventcreation";
 	}
 	

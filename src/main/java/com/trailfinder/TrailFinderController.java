@@ -127,5 +127,24 @@ public class TrailFinderController {
 	
 		return trails;
 	}
+	
+	/**
+	 * Needs to return the JSON of all events from persistence
+	 * @return events the events to be returned to the view
+	 */
+	@RequestMapping(value="/getEventsJSON", method=RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public List<EventDTO> getEventsJSON() {
+		// List of trails to return 
+		List<EventDTO> events = new ArrayList<>();
+		try {
+			events = (List<EventDTO>) hikeService.getEvents();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return events;
+	}
 
 }

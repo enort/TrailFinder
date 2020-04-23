@@ -85,8 +85,7 @@
 	            //map.setCenter(pos); // center map to user cordinates
 	            // Creates trails in map
 	            createTrails(pos);
-	            // Creates markers for events
-	            createEventsInMap();
+	            
 	          }, function() {
 	            handleLocationError(true, infoWindow, map.getCenter());
 	          });
@@ -97,7 +96,8 @@
 	          handleLocationError(false, infoWindow, map.getCenter());
 	        }
 	      
-
+	        createEventsInMap();
+	        
 	      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	        infoWindow.setPosition(pos);
 	        infoWindow.setContent(browserHasGeolocation ?
@@ -109,7 +109,7 @@
 	      function createTrails(pos) {
 	 		 $.getJSON("/fetchTrailList", { lat: pos.lat, lng: pos.lng }, function (data) {
 	 			 $.each(data, function (key, value) {
-	 				console.log(data[key]);
+	 				//console.log(data[key]);
 	 				var infoWindow = new google.maps.InfoWindow;
 	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, map: map, icon: trailMarker});
 	 				infoWindow.setPosition({ lat: value.latitude, lng: value.longitude });
@@ -123,6 +123,19 @@
 	 	 	}
 	      
 	      function createEventsInMap() {
+	    	  $.getJSON("/getEventsJSON", function (data) {
+		    		 $.each(data, function (key, value) {
+		 				console.log(data[key]);
+		 				var infoWindow = new google.maps.InfoWindow;
+		 				var marker = new google.maps.Marker({position: {lat: value.Latitude, lng: value.Longitude}, map: map});
+		 				infoWindow.setPosition({ lat: value.Latitude, lng: value.Longitude });
+		 				infoWindow.setContent('<h3>' + value.eventCreator.creatorFirstName + '</h3>' 
+		 						+ '<p>Distance: ' + value.distance + ' km' + '</p>' + '<a href="@{/Event(eventId=' + value.eventId + '}"><p>View Event</p></a>');
+		 				marker.addListener('click', function() {
+		 					infoWindow.open(map, marker);
+		 				});
+		 			 }); 
+		    	  });
 	    	  
 	      }
 	      

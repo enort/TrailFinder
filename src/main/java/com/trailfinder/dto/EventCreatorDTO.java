@@ -1,5 +1,7 @@
 package com.trailfinder.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +14,10 @@ import javax.persistence.Table;
  * @author Konrad Schaller
  * A DTO that will map to database
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name="eventcreators")
-public class EventCreatorDTO {
+public class EventCreatorDTO implements Serializable {
 	
 	@Id
 	@GeneratedValue

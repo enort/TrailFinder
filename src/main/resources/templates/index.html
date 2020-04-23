@@ -85,6 +85,8 @@
 	            //map.setCenter(pos); // center map to user cordinates
 	            // Creates trails in map
 	            createTrails(pos);
+	            // Creates markers for events
+	            createEventsInMap();
 	          }, function() {
 	            handleLocationError(true, infoWindow, map.getCenter());
 	          });
@@ -119,6 +121,11 @@
 	 			 });
 	 		 });
 	 	 	}
+	      
+	      function createEventsInMap() {
+	    	  
+	      }
+	      
 	     }
 	 
 	 

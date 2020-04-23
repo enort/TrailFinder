@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
 import com.trailfinder.service.IHikeService;
@@ -65,13 +65,13 @@ public class TrailFinderController {
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {
-		EventDTO eventDTObyID;
-		EventDTO eventDTO=null;
-		//int eventId=1;
+		EventDTO eventDTO;
+		List<EventAttendeeDTO> attendees=null;
 		try {
-			eventDTObyID = hikeService.fetchEventById(eventId);
-			eventDTO=eventDTObyID;
+			eventDTO = hikeService.fetchEventById(eventId);
+			attendees = hikeService.getAttendees(eventDTO);
 			model.addAttribute("event", eventDTO);
+			model.addAttribute("attendees", attendees);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

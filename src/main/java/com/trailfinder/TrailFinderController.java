@@ -6,6 +6,7 @@ package com.trailfinder;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,10 +93,14 @@ public class TrailFinderController {
 			Model model
 			) {
 			boolean isEventCreated;
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY_MM_DD HH:MMFAF
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			String newEventStart = eventStart.replace("T", " ");
+			String newEventEnd = eventEnd.replace("T", " ");
+			LocalDateTime eventStartTime = LocalDateTime.parse(newEventStart, formatter);
+			LocalDateTime eventEndTime = LocalDateTime.parse(newEventEnd, formatter);
 			try {
 					EventCreatorDTO newEvent = new EventCreatorDTO(creatorFirstName, creatorLastName, creatorEmail, phoneNumber);
-					EventDTO event = new EventDTO(distance, eventStart, eventEnd, Latitude, Longitude, newEvent);
+					EventDTO event = new EventDTO(distance, eventStartTime, eventEndTime, Latitude, Longitude, newEvent);
 					event.getEventCreator().setEvent(event);
 					
 					// Persist the Event

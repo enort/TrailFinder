@@ -14,24 +14,20 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-<title>TrailFinder | Event Details</title>
+<title>TrailFinder | Create Event</title>
 </head>
 <body>
 	<div id="main" class="container">
 		<div th:replace = "fragments/headbar :: navbar"></div>
-		<!--list event attributes here -->
-					<div>
-					<h3>Event Creator:</h3>
-					<p th:text="${event.eventCreator}">(creator)</p>
-					<h3>Event Latitude and Longitude</h3>
-					<p th:text="${event.Latitude}">(latitude)</p>
-					<p>, </p>
-					<p th:text="${event.Longitude}">(longitude)</p>
-					<h3>Event Start and End</h3>
-					
-					</div>
-	</div>
-	<div id="attend">
-	
-	</div>
-</body>
+		<div>
+		<form action="#" th:action="@{/eventcreation}" th:object="${EventCreatorDTO}" method="GET">
+		<input type="text" th:name="creatorFname"  placeholder="First Name"/><br />
+		<input type="text" th:name="creatorLname"  placeholder="Last Name"/><br />
+		<input type="text" th:name="creatorEmail"  placeholder="Email"/><br />
+		<input type="text" th:name="creatorPhone"  placeholder="Phone"/><br />
+		<input type="text" th:name="eventLat" /><br />
+		<input type="text" th:name="eventLong" /><br />
+		<button type="submit" th:name="action" th:value="in">create</button>
+		</form>
+		</div>
+	</div>>

@@ -63,6 +63,18 @@ public class TrailFinderController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
+	public String create(
+			@RequestParam(value="creatorFname",required=false) String creatorFname,
+			@RequestParam(value="creatorLname",required=false) String creatorLname,
+			@RequestParam(value="creatorEmail",required=false) String creatorEmail,
+			@RequestParam(value="creatorPhone",required=false) String creatorPhone,
+			@RequestParam(value="eventLat",required=true, defaultValue="0.0") String eventLat,
+			@RequestParam(value="eventLong",required=true, defaultValue="0.0") String eventLong,
+			Model model) {
+		return "eventcreation";
+	}
+	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {
 		EventDTO eventDTObyID;
@@ -106,5 +118,6 @@ public class TrailFinderController {
 	
 		return trails;
 	}
+
 
 }

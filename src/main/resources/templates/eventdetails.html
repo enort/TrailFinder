@@ -33,17 +33,17 @@
 					<p th:text="${event.eventEnd}">(end)</p>
 					<h3>Attending:</h3>
 					<div class="list-group list-group-action" th:each="attending : ${attendees}">
-					<p th:each="${attending}"></p>
+					<p th:text="${attending}"></p>
 					</div>
 					</div>
 					<br />
 					<h6>Want to attend this event?</h6>
-					<form th:action="@{/Event}">
-					Enter First Name: <input type="text" th:name="creatorFname"/><br />
-					Enter Last Name: <input type="text" th:name="creatorLname"/><br />
-					Enter Email: <input type="text" th:name="creatorEmail"/><br />
-					Enter Phone Number: <input type="text" th:name="creatorPhone"/><br />
-					<button type="submit" name="action" value="in">Register</button>
+					<form action="#" th:action="@{/Event/Attend(eventId=${event.eventId})}" th:object="${EventAttendeeDTO}" method="POST">
+					Enter First Name: <input type="text" name="attendeeFirstName" /><br />
+					Enter Last Name: <input type="text" name="attendeeLastname" /><br />
+					Enter Email: <input type="text" name="attendeeEmail" /><br />
+					Enter Phone Number: <input type="text" name="attendeePhone" /><br />
+					<button name="submit" type="submit" value="in">Attend</button>
 					</form>
 		</div>
 </body>

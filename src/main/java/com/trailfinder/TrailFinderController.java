@@ -77,7 +77,28 @@ public class TrailFinderController {
 			e.printStackTrace();
 		}
 		
-	return "eventdetails";}
+		return "eventdetails";
+	}
+	
+	@RequestMapping(value="/Event/Attend", method=RequestMethod.POST)
+	public String attendEvent(@RequestParam(value="eventId", required=true) int eventId, EventAttendeeDTO attendee, Model model) {
+		boolean isEventAttended;
+		try {
+			// fetch the event user is attending
+			EventDTO eventAttending = hikeService.fetchEventById(attendee.getEventId());
+			attendee.setEvent(eventAttending);
+			
+			// Persist the attendee
+			isEventAttended = hikeService.attendEvent(attendee);
+			if (isEventAttended) {
+				model.addAttribute("event", eventAttending);
+				return "eventdetails";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String prof(Model model) {

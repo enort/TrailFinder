@@ -20,11 +20,19 @@
 	<div id="main" class="container">
 		<div th:replace = "fragments/headbar :: navbar"></div>
 		<div>
-		
-		<form action="#" th:action="@{/saveEvent}" th:object="${eventDTO}" method="GET">
-		<input type="text" name="latitude" placeholder="Latitude" /><br />
-		<input type="text" name="longitude" placeholder="Longitude" /><br />
+		<form action="#" th:action="@{/Event/Create}" method="POST">
+		<input type="text" name="distance" placeholder="Distance" /><br />
+		Start Time: <input type="datetime-local" name="eventStart"  /><br />
+		End Time: <input type="datetime-local" name="eventEnd"  /><br />
+		<input type="text" name="Latitude" placeholder="Latitude" /><br />
+		<input type="text" name="Longitude" placeholder="Longitude" /><br />
+		<input type="text" name="creatorFirstName" placeholder="First Name" /><br />
+		<input type="text" name="creatorLastName" placeholder="Last Name" /><br />
+		<input type="text" name="creatorEmail" placeholder="Email" /><br />
+		<input type="text" name="phoneNumber" placeholder="Phone Number" /><br />
 		<button type="submit" name="submit" value="0">create</button>
 		</form>
 		</div>
-	</div>>
+	</div>
+</body>
+</html>

@@ -5,14 +5,20 @@ package com.trailfinder;
 
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,16 +70,46 @@ public class TrailFinderController {
 		return "index";
 	}
 	
-	@RequestMapping(value="/saveEvent", method=RequestMethod.GET)
-	public String saveEvent(EventDTO eventDTO) {
-		eventDTO.setEventId(10);
-		return "eventcreation";
-	}
 	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
-	public String create(Model model) {
-		model.addAttribute("eventDTO", new EventDTO());
-		return "eventcreation";
+	public String form(
+			@RequestParam(value="Latitude", required=false) String Latitude,
+			@RequestParam(value="Longitude", required=false) String Longitude
+			) {
+			return "eventcreation";
+			}
+	
+	@RequestMapping(value="/Event/Create", method=RequestMethod.POST)
+	public String submit(
+			@RequestParam(value="distance", required=true) Double distance,
+			@RequestParam(value="eventStart", required=true) String eventStart,
+			@RequestParam(value="eventEnd", required=true) String eventEnd,
+			@RequestParam(value="Latitude", required=true, defaultValue="0.0") String Latitude, 
+			@RequestParam(value="Longitude", required=true, defaultValue="0.0") String Longitude,
+			@RequestParam(value="creatorFirstName", required=true) String creatorFirstName, 
+			@RequestParam(value="creatorLastName", required=true) String creatorLastName, 
+			@RequestParam(value="creatorEmail", required=true) String creatorEmail, 
+			@RequestParam(value="phoneNumber", required=true) String phoneNumber, 		
+			Model model
+			) {
+			boolean isEventCreated;
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY_MM_DD HH:MMFAF
+			try {
+					EventCreatorDTO newEvent = new EventCreatorDTO(creatorFirstName, creatorLastName, creatorEmail, phoneNumber);
+					EventDTO event = new EventDTO(distance, eventStart, eventEnd, Latitude, Longitude, newEvent);
+					event.getEventCreator().setEvent(event);
+					
+					// Persist the Event
+					isEventCreated = hikeService.createEvent(event);
+					if (isEventCreated) {
+						model.addAttribute("event", event);
+						return "eventdetails";
+					}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "index";
 	}
+
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {

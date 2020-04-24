@@ -23,12 +23,27 @@
 					<div>
 					<h3>Event Creator:</h3>
 					<p th:text="${event.eventCreator}">(creator)</p>
+					<!-- trail name here? -->
 					<h3>Event Latitude and Longitude</h3>
-					<p th:text="${event.Latitude}">(latitude)</p>
-					<p>, </p>
-					<p th:text="${event.Longitude}">(longitude)</p>
+					Lat: <p th:text="${event.Latitude}">(latitude)</p>
+					Long: <p th:text="${event.Longitude}">(longitude)</p>
+					Distance (km): <p th:text="${event.distance}">(distance)</p>
 					<h3>Event Start and End</h3>
-					
+					<p th:text="${event.eventStart}">(start)</p>
+					<p th:text="${event.eventEnd}">(end)</p>
+					<h3>Attending:</h3>
+					<div class="list-group list-group-action" th:each="attending : ${attendees}">
+					<p th:text="${attending}"></p>
 					</div>
+					</div>
+					<br />
+					<h6>Want to attend this event?</h6>
+					<form action="#" th:action="@{/Event/Attend(eventId=${event.eventId})}" th:object="${EventAttendeeDTO}" method="POST">
+					Enter First Name: <input type="text" name="attendeeFirstName" /><br />
+					Enter Last Name: <input type="text" name="attendeeLastname" /><br />
+					Enter Email: <input type="text" name="attendeeEmail" /><br />
+					Enter Phone Number: <input type="text" name="phoneNumber" /><br />
+					<button name="submit" type="submit" value="in">Attend</button>
+					</form>
 		</div>
 </body>

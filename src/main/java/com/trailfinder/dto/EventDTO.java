@@ -3,6 +3,7 @@
  */
 package com.trailfinder.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -16,9 +17,10 @@ import javax.persistence.Transient;
  * @author LookItsCashew
  * DTO for Events posted on application
  */
+@SuppressWarnings("serial")
 @Entity
 @Table(name="events")
-public class EventDTO {
+public class EventDTO implements Serializable {
 
 	@Id
 	@GeneratedValue

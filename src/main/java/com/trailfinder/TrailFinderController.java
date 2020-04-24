@@ -71,8 +71,13 @@ public class TrailFinderController {
 	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
 	public String form(
 			@RequestParam(value="Latitude", required=false) String Latitude,
-			@RequestParam(value="Longitude", required=false) String Longitude
+			@RequestParam(value="Longitude", required=false) String Longitude,
+			Model model
 			) {
+			if(!Latitude.isEmpty() && !Longitude.isEmpty()) {
+				model.addAttribute("Latitude", Latitude);
+				model.addAttribute("Longitude", Longitude);
+			}
 			return "eventcreation";
 			}
 	
@@ -111,7 +116,6 @@ public class TrailFinderController {
 			}
 			return "index";
 	}
-
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {

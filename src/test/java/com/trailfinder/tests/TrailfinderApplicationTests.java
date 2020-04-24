@@ -1,4 +1,4 @@
-package com.trailfinder.trailfinder;
+package com.trailfinder.tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

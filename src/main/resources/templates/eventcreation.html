@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<title>TrailFinder | Create Event</title>
+</head>
+<body>
+	<div id="main" class="container">
+		<div th:replace = "fragments/headbar :: navbar"></div>
+		<div>
+		<form action="#" th:action="@{/Event/Create}" method="POST">
+		Distance: <input type="text" name="distance" placeholder="Distance" /><br />
+		Start Time: <input type="datetime-local" name="eventStart"  /><br />
+		End Time: <input type="datetime-local" name="eventEnd"  /><br />
+		Latitude: <input type="text" th:value="${Latitude}" name="Latitude" placeholder="Latitude" /><br />
+		Longitude: <input type="text" th:value="${Longitude}" name="Longitude" placeholder="Longitude" /><br />
+		First Name: <input type="text" name="creatorFirstName" placeholder="First Name" /><br />
+		Last Name: <input type="text" name="creatorLastName" placeholder="Last Name" /><br />
+		Email: <input type="text" name="creatorEmail" placeholder="Email" /><br />
+		Phone Name: <input type="text" name="phoneNumber" placeholder="Phone Number" /><br />
+		<button type="submit" name="submit" value="0">create</button>
+		</form>
+		</div>
+	</div>
+</body>
+</html>

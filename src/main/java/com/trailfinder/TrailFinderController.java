@@ -5,23 +5,26 @@ package com.trailfinder;
 
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.trailfinder.dto.EventCreatorDTO;
+
 import com.trailfinder.dto.Event;
 import com.trailfinder.dto.EventAttendeeDTO;
+
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
 import com.trailfinder.service.IHikeService;
@@ -36,6 +39,7 @@ public class TrailFinderController {
 	
 	@Autowired
 	private IHikeService hikeService;
+	
 
 	/**
 	 * Handles return of home screen view and index end point
@@ -62,6 +66,55 @@ public class TrailFinderController {
 		}
 		model.addAttribute("events", events);
 		return "index";
+	}
+	
+	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
+	public String form(
+			@RequestParam(value="Latitude", required=false) String Latitude,
+			@RequestParam(value="Longitude", required=false) String Longitude,
+			Model model
+			) {
+			if(!Latitude.isEmpty() && !Longitude.isEmpty()) {
+				model.addAttribute("Latitude", Latitude);
+				model.addAttribute("Longitude", Longitude);
+			}
+			return "eventcreation";
+			}
+	
+	@RequestMapping(value="/Event/Create", method=RequestMethod.POST)
+	public String submit(
+			@RequestParam(value="distance", required=true) Double distance,
+			@RequestParam(value="eventStart", required=true) String eventStart,
+			@RequestParam(value="eventEnd", required=true) String eventEnd,
+			@RequestParam(value="Latitude", required=true, defaultValue="0.0") String Latitude, 
+			@RequestParam(value="Longitude", required=true, defaultValue="0.0") String Longitude,
+			@RequestParam(value="creatorFirstName", required=true) String creatorFirstName, 
+			@RequestParam(value="creatorLastName", required=true) String creatorLastName, 
+			@RequestParam(value="creatorEmail", required=true) String creatorEmail, 
+			@RequestParam(value="phoneNumber", required=true) String phoneNumber, 		
+			Model model
+			) {
+			boolean isEventCreated;
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			String newEventStart = eventStart.replace("T", " ");
+			String newEventEnd = eventEnd.replace("T", " ");
+			LocalDateTime eventStartTime = LocalDateTime.parse(newEventStart, formatter);
+			LocalDateTime eventEndTime = LocalDateTime.parse(newEventEnd, formatter);
+			try {
+					EventCreatorDTO newEvent = new EventCreatorDTO(creatorFirstName, creatorLastName, creatorEmail, phoneNumber);
+					EventDTO event = new EventDTO(distance, eventStartTime, eventEndTime, Latitude, Longitude, newEvent);
+					event.getEventCreator().setEvent(event);
+					
+					// Persist the Event
+					isEventCreated = hikeService.createEvent(event);
+					if (isEventCreated) {
+						model.addAttribute("event", event);
+						return "eventdetails";
+					}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "index";
 	}
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
@@ -152,5 +205,6 @@ public class TrailFinderController {
 	
 		return events;
 	}
+
 
 }

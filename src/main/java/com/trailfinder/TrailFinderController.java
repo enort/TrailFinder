@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -134,7 +135,7 @@ public class TrailFinderController {
 	 */
 	@RequestMapping(value="/getEventsJSON", method=RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<EventDTO> getEventsJSON() {
+	public String getEventsJSON() {
 		// List of trails to return 
 		List<EventDTO> events = new ArrayList<>();
 		try {
@@ -143,8 +144,24 @@ public class TrailFinderController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		return events;
+		
+		JSONObject response= new JSONObject();
+		JSONArray responseArray = new JSONArray();
+		for (EventDTO event : events) {
+			//StringBuilder sb = new StringBuilder();
+			//sb.append("{").append("''");
+			JSONObject eventObject = new JSONObject();
+			eventObject.put("distance", event.getDistance());
+			eventObject.put("eventStart", event.getEventStart());
+			eventObject.put("eventEnd", event.getEventEnd());
+			eventObject.put("Latitude", event.getLatitude());
+			eventObject.put("Longitude", event.getLongitude());
+			eventObject.put("eventId", event.getEventId());
+			//eventObject.put("eventCreator", event.getEventCreator());
+			responseArray.put(eventObject);
+		}
+		response.put("events", responseArray);
+		return response.toString();
 	}
 
 }

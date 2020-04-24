@@ -130,7 +130,8 @@
 		 				var marker = new google.maps.Marker({position: {lat: value.Latitude, lng: value.Longitude}, map: map});
 		 				infoWindow.setPosition({ lat: value.Latitude, lng: value.Longitude });
 		 				infoWindow.setContent('<h3>' + value.eventCreator.creatorFirstName + '</h3>' 
-		 						+ '<p>Distance: ' + value.distance + ' km' + '</p>' + '<a href="@{/Event(eventId=' + value.eventId + '}"><p>View Event</p></a>');
+		 						+ '<p>Distance: ' + value.distance + ' km' + '</p>' +
+		 						'<p>View Event</p>');
 		 				marker.addListener('click', function() {
 		 					infoWindow.open(map, marker);
 		 				});

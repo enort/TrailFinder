@@ -15,35 +15,84 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <title>TrailFinder | Event Details</title>
+<style type="text/css">
+span{
+class="input-group-text" ;
+id="inputGroup-sizing-sm" ;
+}
+</style>
 </head>
 <body>
 	<div id="main" class="container">
 		<div th:replace = "fragments/headbar :: navbar"></div>
 		<!--list event attributes here -->
-					<div>
-					<h3>Event Creator:</h3>
-					<p th:text="${event.eventCreator}">(creator)</p>
+					<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Event Creator:</span>
+					</div>
+					<p th:text="${event.eventCreator}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(creator)</p>
+					</div>
 					<!-- trail name here? -->
-					<h3>Event Latitude and Longitude</h3>
-					Lat: <p th:text="${event.Latitude}">(latitude)</p>
-					Long: <p th:text="${event.Longitude}">(longitude)</p>
-					Distance (km): <p th:text="${event.distance}">(distance)</p>
-					<h3>Event Start and End</h3>
-					<p th:text="${event.eventStart}">(start)</p>
-					<p th:text="${event.eventEnd}">(end)</p>
-					<h3>Attending:</h3>
+					<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+					<span  class="input-group-text" id="inputGroup-sizing-sm">Event Latitude and Longitude:</span>
+					</div>
+					<p class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">Lat:</p>
+					 <p th:text="${event.Latitude}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(latitude)</p>
+					<p class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">Long:</p>
+					 <p th:text="${event.Longitude}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(longitude)</p>
+
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Distance (km):</span>
+					</div>
+					 <p th:text="${event.distance}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(distance)</p>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+					<span  class="input-group-text" id="inputGroup-sizing-sm">Event Start and End:</span>
+					</div>
+					<p th:text="${event.eventStart}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(start)</p>
+					<p th:text="${event.eventEnd}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(end)</p>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					<div class="input-group-prepend">
+					<span  class="input-group-text" id="inputGroup-sizing-sm">Attending:</span>
+					</div>
 					<div class="list-group list-group-action" th:each="attending : ${attendees}">
-					<p th:text="${attending}"></p>
+					<p th:text="${attending}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">(attendee)</p>
 					</div>
 					</div>
-					<br />
-					<h6>Want to attend this event?</h6>
+					
+					
+					<h5>Want to attend this event?</h5>
 					<form action="#" th:action="@{/Event/Attend(eventId=${event.eventId})}" th:object="${EventAttendeeDTO}" method="POST">
-					Enter First Name: <input type="text" name="attendeeFirstName" /><br />
-					Enter Last Name: <input type="text" name="attendeeLastname" /><br />
-					Enter Email: <input type="text" name="attendeeEmail" /><br />
-					Enter Phone Number: <input type="text" name="phoneNumber" /><br />
-					<button name="submit" type="submit" value="in">Attend</button>
+					<div class="input-group input-group-sm mb-3">
+					 <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Enter First Name: </span>
+					</div>
+					<input type="text" name="attendeeFirstName" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					 <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Enter Last Name: </span>
+					</div>
+					<input type="text" name="attendeeLastname" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					 <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Enter Email: </span>
+					</div>
+					<input type="text" name="attendeeEmail" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+					 <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">Enter Phone Number: </span>
+					</div>
+					<input type="text" name="phoneNumber" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"/>
+					</div>
+					<button name="submit"value="in" class="btn btn-outline-secondary" type="submit">Attend</button>
 					</form>
 		</div>
 </body>

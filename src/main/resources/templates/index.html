@@ -127,10 +127,12 @@
 		    		 $.each(data, function (key, value) {
 		 				console.log(data[key]);
 		 				var infoWindow = new google.maps.InfoWindow;
-		 				var marker = new google.maps.Marker({position: {lat: value.Latitude, lng: value.Longitude}, map: map});
-		 				infoWindow.setPosition({ lat: value.Latitude, lng: value.Longitude });
-		 				infoWindow.setContent('<h3>' + value.eventCreator.creatorFirstName + '</h3>' 
-		 						+ '<p>Distance: ' + value.distance + ' km' + '</p>' + '<a href="@{/Event(eventId=' + value.eventId + '}"><p>View Event</p></a>');
+		 				var marker = new google.maps.Marker({position: {lat: Number(value.latitude), lng: Number(value.longitude) }, map: map});
+		 				var eventLink = '\"/Event?eventId=' + value.eventId + '\"';
+		 				console.log(eventLink)
+		 				infoWindow.setPosition({ lat: Number(value.latitude), lng: Number(value.longitude) });
+		 				infoWindow.setContent('<h3>' + value.creatorFirstName + '</h3>' 
+		 						+ '<a href=' + eventLink +  '><p>View Event Details</p></a>');
 		 				marker.addListener('click', function() {
 		 					infoWindow.open(map, marker);
 		 				});

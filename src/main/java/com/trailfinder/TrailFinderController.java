@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.trailfinder.dto.Event;
 import com.trailfinder.dto.EventAttendeeDTO;
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
@@ -134,14 +135,19 @@ public class TrailFinderController {
 	 */
 	@RequestMapping(value="/getEventsJSON", method=RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public List<EventDTO> getEventsJSON() {
+	public List<Event> getEventsJSON() {
 		// List of trails to return 
-		List<EventDTO> events = new ArrayList<>();
+		List<EventDTO> eventDTOs = new ArrayList<>();
+		List<Event> events = new ArrayList<>();
 		try {
-			events = (List<EventDTO>) hikeService.getEvents();
+			eventDTOs = (List<EventDTO>) hikeService.getEvents();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		for (EventDTO eventDTO : eventDTOs) {
+			Event event = new Event(eventDTO);
+			events.add(event);
 		}
 	
 		return events;

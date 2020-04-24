@@ -40,16 +40,6 @@ public class TrailFinderController {
 	@Autowired
 	private IHikeService hikeService;
 	
-
-	/**
-	 * Handles return of home screen view and index end point
-	 * @return index
-	 */
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
-	
 	/**
 	 * Handles return of home screen view and / end point
 	 * @return index
@@ -145,20 +135,15 @@ public class TrailFinderController {
 			// Persist the attendee
 			isEventAttended = hikeService.attendEvent(attendee);
 			if (isEventAttended) {
+				List<EventAttendeeDTO> attendees = hikeService.getAttendees(eventAttending);
 				model.addAttribute("event", eventAttending);
+				model.addAttribute("attendees", attendees);
 				return "eventdetails";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "index";
-	}
-	
-	@RequestMapping(value="/profile", method=RequestMethod.GET)
-	public String prof(Model model) {
-		//ProfileDTO profile = hikeService.getProfile(0);
-		//model.addAttribute("ProfileDTO", profile);
-		return "profile";
 	}
 	
 	/**

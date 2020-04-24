@@ -32,7 +32,6 @@ public class HikeService implements IHikeService {
 	ITrailDAO trailDAO;
 
 	@Override
-	@Cacheable("getAttendees")
 	public List<EventAttendeeDTO> getAttendees(EventDTO event) throws Exception {
 		// Return the list of attendees for an event
 		List<EventAttendeeDTO> attendees = attendeeDAO.fetchEventAttendees(event);

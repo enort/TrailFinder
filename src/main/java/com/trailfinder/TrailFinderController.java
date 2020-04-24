@@ -6,6 +6,7 @@ package com.trailfinder;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,12 +74,17 @@ public class TrailFinderController {
 	@RequestMapping(value="/eventcreation", method=RequestMethod.GET)
 	public String form(
 			@RequestParam(value="Latitude", required=false) String Latitude,
-			@RequestParam(value="Longitude", required=false) String Longitude
+			@RequestParam(value="Longitude", required=false) String Longitude,
+			Model model
 			) {
+			if(!Latitude.isEmpty() && !Longitude.isEmpty()) {
+				model.addAttribute("Latitude", Latitude);
+				model.addAttribute("Longitude", Longitude);
+			}
 			return "eventcreation";
 			}
 	
-	@RequestMapping(value="/Event/Create", method=RequestMethod.POST)
+/*	@RequestMapping(value="/Event/Create", method=RequestMethod.POST)
 	public String submit(
 			@RequestParam(value="distance", required=true) Double distance,
 			@RequestParam(value="eventStart", required=true) String eventStart,
@@ -92,7 +98,9 @@ public class TrailFinderController {
 			Model model
 			) {
 			boolean isEventCreated;
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY_MM_DD HH:MMFAF
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			LocalDateTime eventStartTime = LocalDateTime.parse(eventStart, formatter);
+			LocalDateTime eventEndTime = LocalDateTime.parse(eventEnd, formatter);
 			try {
 					EventCreatorDTO newEvent = new EventCreatorDTO(creatorFirstName, creatorLastName, creatorEmail, phoneNumber);
 					EventDTO event = new EventDTO(distance, eventStart, eventEnd, Latitude, Longitude, newEvent);
@@ -109,7 +117,7 @@ public class TrailFinderController {
 			}
 			return "index";
 	}
-
+*/
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {

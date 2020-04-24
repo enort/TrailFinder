@@ -78,10 +78,24 @@
 	  		      document.getElementById('map'), options);
 	  		 
 	  		  var infoWindow = new google.maps.InfoWindow;
-	            
+	  		  var coordinates;
+	          
 	            infoWindow.setPosition(pos);
 	            infoWindow.setContent('You are here!');
 	            infoWindow.open(map);
+	            map.addListener('dblclick',function(mapsMouseEvent){
+				infoWindow.close();
+							infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+							coordinates = mapsMouseEvent.latLng.toString();
+				var strings=[coordinates.split(", ")];
+				var str = strings[0];
+				
+				var Latitude = str[0].replace("(","");
+				var Longitude = str[1].replace(")","");
+				
+				infoWindow.setContent('<a href=\"/eventcreation?Latitude='+ Latitude + '&Longitude=' + Longitude + '\">' + 'Create Event Here' + '</a>');
+				infoWindow.open(map);
+				});
 	            //map.setCenter(pos); // center map to user cordinates
 	            // Creates trails in map
 	            createTrails(pos);
@@ -115,6 +129,7 @@
 	 				marker.addListener('click', function() {
 	 					infoWindow.open(map, marker);
 	 				});
+	 				
 	 			 });
 	 		 });
 	 	 	}

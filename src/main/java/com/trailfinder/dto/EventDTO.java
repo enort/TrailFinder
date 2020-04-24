@@ -5,6 +5,7 @@ package com.trailfinder.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -100,28 +101,40 @@ public class EventDTO implements Serializable {
 	 * @return the eventStart
 	 */
 	public LocalDateTime getEventStart() {
-		return eventStart;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String startTimeString = this.eventStart.toString();
+		LocalDateTime eventStartTime = LocalDateTime.parse(startTimeString.replace("T", " "), formatter);
+		return eventStartTime;
 	}
 
 	/**
 	 * @param eventStart the eventStart to set
 	 */
 	public void setEventStart(LocalDateTime eventStart) {
-		this.eventStart = eventStart;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String endTimeString = eventStart.toString();
+		LocalDateTime eventStartTime = LocalDateTime.parse(endTimeString.replace("T", " "), formatter);
+		this.eventStart = eventStartTime;
 	}
 
 	/**
 	 * @return the eventEnd
 	 */
 	public LocalDateTime getEventEnd() {
-		return eventEnd;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String endTimeString = this.eventStart.toString();
+		LocalDateTime eventEndTime = LocalDateTime.parse(endTimeString.replace("T", " "), formatter);
+		return eventEndTime;
 	}
 
 	/**
 	 * @param eventEnd the eventEnd to set
 	 */
 	public void setEventEnd(LocalDateTime eventEnd) {
-		this.eventEnd = eventEnd;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		String endTimeString = eventEnd.toString();
+		LocalDateTime eventEndTime = LocalDateTime.parse(endTimeString.replace("T", " "), formatter);
+		this.eventEnd = eventEndTime;
 	}
 
 	/**

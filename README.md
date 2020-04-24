@@ -8,11 +8,11 @@ TrailFinder is a Spring Boot/Maven project built using Eclipse IDE and will be u
 ## Description
 
 TrailFinder is an application that will allow users to view trails near them as well as custom user created hike events. These events 
-will be created with an associated user profile and contain information such as the distance the hike event will be, when it is scheduled, and where it starts geographically. 
+will be created with an associated user's contact info and contain information such as the distance the hike event will be, when it is scheduled, and where it starts geographically. 
 
 ## Additional Needs
 
-The application will require the installation of JUnit4 library after cloning.
+The application requires no additional libraries or steps to compile the project
 
 ## Authors
 Konrad Schaller (Backend and service layer),

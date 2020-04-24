@@ -19,7 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.trailfinder.dto.EventCreatorDTO;
+
+import com.trailfinder.dto.Event;
+import com.trailfinder.dto.EventAttendeeDTO;
+
 import com.trailfinder.dto.EventDTO;
 import com.trailfinder.dto.TrailDTO;
 import com.trailfinder.service.IHikeService;
@@ -110,19 +115,40 @@ public class TrailFinderController {
 	
 	@RequestMapping(value="/Event", method=RequestMethod.GET)
 	public String evt(@RequestParam(value="eventId") int eventId, Model model) {
-		EventDTO eventDTObyID;
-		EventDTO eventDTO=null;
-		//int eventId=1;
+		EventDTO eventDTO;
+		List<EventAttendeeDTO> attendees=null;
 		try {
-			eventDTObyID = hikeService.fetchEventById(eventId);
-			eventDTO=eventDTObyID;
+			eventDTO = hikeService.fetchEventById(eventId);
+			attendees = hikeService.getAttendees(eventDTO);
 			model.addAttribute("event", eventDTO);
+			model.addAttribute("attendees", attendees);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-	return "eventdetails";}
+		return "eventdetails";
+	}
+	
+	@RequestMapping(value="/Event/Attend", method=RequestMethod.POST)
+	public String attendEvent(@RequestParam(value="eventId", required=true) int eventId, EventAttendeeDTO attendee, Model model) {
+		boolean isEventAttended;
+		try {
+			// fetch the event user is attending
+			EventDTO eventAttending = hikeService.fetchEventById(attendee.getEventId());
+			attendee.setEvent(eventAttending);
+			
+			// Persist the attendee
+			isEventAttended = hikeService.attendEvent(attendee);
+			if (isEventAttended) {
+				model.addAttribute("event", eventAttending);
+				return "eventdetails";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String prof(Model model) {
@@ -150,6 +176,30 @@ public class TrailFinderController {
 		}
 	
 		return trails;
+	}
+	
+	/**
+	 * Needs to return the JSON of all events from persistence
+	 * @return events the events to be returned to the view
+	 */
+	@RequestMapping(value="/getEventsJSON", method=RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public List<Event> getEventsJSON() {
+		// List of trails to return 
+		List<EventDTO> eventDTOs = new ArrayList<>();
+		List<Event> events = new ArrayList<>();
+		try {
+			eventDTOs = (List<EventDTO>) hikeService.getEvents();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (EventDTO eventDTO : eventDTOs) {
+			Event event = new Event(eventDTO);
+			events.add(event);
+		}
+	
+		return events;
 	}
 
 

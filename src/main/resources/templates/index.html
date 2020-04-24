@@ -128,7 +128,7 @@
 	 				var marker = new google.maps.Marker({position: {lat: value.latitude, lng: value.longitude}, map: map, icon: trailMarker});
 	 				infoWindow.setPosition({ lat: value.latitude, lng: value.longitude });
 	 				infoWindow.setContent('<h3>' + value.name + '</h3>' + '<p>Coords: ' + value.latitude + ', '
-	 				+ value.longitude + '</p>' + '<a href="#"><p>Create Event...</p></a>');
+	 				+ value.longitude + '</p>' + '<a href="/eventcreation?Latitude='+value.latitude+'&Longitude='+value.longitude+'"><p>Create Event</p></a>');
 	 				marker.addListener('click', function() {
 	 					infoWindow.open(map, marker);
 	 				});

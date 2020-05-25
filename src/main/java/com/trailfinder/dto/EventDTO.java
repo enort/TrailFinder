@@ -122,7 +122,7 @@ public class EventDTO implements Serializable {
 	 */
 	public LocalDateTime getEventEnd() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		String endTimeString = this.eventStart.toString();
+		String endTimeString = this.eventEnd.toString();
 		LocalDateTime eventEndTime = LocalDateTime.parse(endTimeString.replace("T", " "), formatter);
 		return eventEndTime;
 	}
